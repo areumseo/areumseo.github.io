@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publications & Research — Areum Seo</title>
+  <meta name="description" content="Publications and research by Areum Seo — linguistics, language education, and assessment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --bg2: #ece8df;
+      --ink: #1a1714;
+      --ink2: #4a453e;
+      --ink3: #7a7268;
+      --rule: #ccc6b8;
+      --accent: #c94b2a;
+      --snowflake: #00A1D9;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      font-size: 0.88rem;
+      color: var(--ink3);
+      list-style: none;
+    }
+
+    .nav-menu a:hover { color: var(--ink); }
+
+    .nav-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--snowflake);
+      border: 1px solid var(--snowflake);
+      padding: 3px 8px;
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+
+    /* ── WRAP ── */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: clamp(48px, 8vw, 80px) clamp(20px, 5vw, 60px) 0;
+      max-width: calc(var(--max) + 120px);
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink3);
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover { color: var(--accent); }
+
+    .page-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 14px;
+    }
+
+    .page-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+
+    .page-desc {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: var(--ink3);
+      max-width: 600px;
+      line-height: 1.65;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 56px 0 0;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      align-items: start;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 32px;
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--ink3);
+      padding-top: 5px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    /* ── PUB ENTRIES ── */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .pub-entry {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    .pub-entry::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.2s ease;
+    }
+
+    .pub-entry:hover::before { transform: scaleY(1); }
+
+    .pub-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink3);
+      padding-top: 3px;
+    }
+
+    .pub-body {}
+
+    .pub-title {
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .pub-meta {
+      font-size: 0.86rem;
+      color: var(--ink3);
+      line-height: 1.55;
+    }
+
+    .pub-meta em {
+      font-style: italic;
+    }
+
+    .pub-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.04em;
+      color: var(--ink3);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 3px 8px;
+      background: var(--bg2);
+    }
+
+    .tag.refereed {
+      color: var(--accent);
+      border-color: rgba(201,75,42,0.3);
+      background: rgba(201,75,42,0.05);
+    }
+
+    .tag.intl {
+      color: var(--snowflake);
+      border-color: rgba(0,161,217,0.3);
+      background: rgba(0,161,217,0.05);
+    }
+
+    /* ── THESIS ── */
+    .thesis-block {
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .thesis-main {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .thesis-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .thesis-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .thesis-meta {
+      font-size: 0.88rem;
+      color: var(--ink3);
+      line-height: 1.6;
+    }
+
+    .thesis-meta span {
+      display: block;
+    }
+
+    .thesis-footer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--rule);
+    }
+
+    .thesis-stat {
+      padding: 16px 24px;
+      border-right: 1px solid var(--rule);
+    }
+
+    .thesis-stat:last-child { border-right: none; }
+
+    .thesis-stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 4px;
+    }
+
+    .thesis-stat-val {
+      font-size: 0.88rem;
+      color: var(--ink2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      border-top: 1px solid var(--rule);
+      padding: 28px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-left {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink3);
+    }
+
+    .footer-right {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink3);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .section-header { grid-template-columns: 1fr; gap: 8px; }
+      .pub-entry { grid-template-columns: 44px 1fr; gap: 16px; }
+      .thesis-footer { grid-template-columns: 1fr; }
+      .thesis-stat { border-right: none; border-bottom: 1px solid var(--rule); }
+      .thesis-stat:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="index.html">areum.seo</a>
+      <ul class="nav-menu">
+        <li><a href="index.html#about">about</a></li>
+        <li><a href="index.html#projects">projects</a></li>
+        <li><a href="index.html#work">work</a></li>
+        <li><a href="index.html#archive">archive</a></li>
+        <li><a href="index.html#contact">contact</a></li>
+      </ul>
+      <a href="https://www.snowflake.com/ko/" target="_blank" class="nav-tag">@ Snowflake</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <a class="back-link" href="index.html">← Back to main</a>
+    <div class="page-eyebrow">04 — archive · writing</div>
+    <h1 class="page-title">Publications<br>& Research</h1>
+    <p class="page-desc">
+      Academic work in linguistics, language education, and assessment — developed during graduate study at Tokyo University of Foreign Studies (2009–2015). All paper submissions and conference presentations were written or delivered in Japanese unless otherwise noted.
+    </p>
+  </div>
+
+  <main class="wrap">
+
+    <!-- DISSERTATION -->
+    <section class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">01 — dissertation</div>
+        <h2 class="section-title">Thesis</h2>
+      </div>
+      <div class="thesis-block">
+        <div class="thesis-main">
+          <div class="thesis-label">Master's Thesis · Written in Japanese</div>
+          <div class="thesis-title">On the Creation of Writing Assessment Standards for Intermediate-level Japanese Learners' Essays in the Field of Japanese Language Education – Based on the JF Standard</div>
+          <div class="thesis-meta">
+            <span>Seo, A. (2012)</span>
+            <span>Academic advisor: Tomimori, Nobuo</span>
+            <span>Tokyo University of Foreign Studies, Tokyo, Japan</span>
+          </div>
+        </div>
+        <div class="thesis-footer">
+          <div class="thesis-stat">
+            <div class="thesis-stat-label">Year</div>
+            <div class="thesis-stat-val">2012</div>
+          </div>
+          <div class="thesis-stat">
+            <div class="thesis-stat-label">Institution</div>
+            <div class="thesis-stat-val">Tokyo Univ. of Foreign Studies</div>
+          </div>
+          <div class="thesis-stat">
+            <div class="thesis-stat-label">Framework</div>
+            <div class="thesis-stat-val">JF Standard</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAPER SUBMISSIONS -->
+    <section class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">02 — journals</div>
+        <h2 class="section-title">Paper Submissions</h2>
+      </div>
+      <div class="pub-list">
+
+        <div class="pub-entry">
+          <div class="pub-year">2017</div>
+          <div class="pub-body">
+            <div class="pub-title">A review about a Multiliteracies Framework for Collegiate Foreign Language Teaching</div>
+            <div class="pub-meta"><em>JAFLE Bulletin</em>, 20, JAFLE, pp.264–270.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag">Multiliteracies</span>
+              <span class="tag">Foreign Language Education</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2015</div>
+          <div class="pub-body">
+            <div class="pub-title">Problems of CEFR levels and can-do statements from the questionnaire results for learners of non-EU languages — especially focused on examples of learners of Asian languages</div>
+            <div class="pub-meta">Tomimori, N., Seo, A. — <em>Research Accomplishment Report for Comprehensive Study on Language Education Policies and Cross-Linguistic Proficiency Evaluation Methods for Asian Languages</em>, pp.113–126.</div>
+            <div class="pub-tags">
+              <span class="tag">Non-refereed</span>
+              <span class="tag">CEFR</span>
+              <span class="tag">Asian Languages</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2014</div>
+          <div class="pub-body">
+            <div class="pub-title">A proposal for an assessment model for Japanese writing class: the Triangle Model using can-do statements and Facebook</div>
+            <div class="pub-meta"><em>JAFLE Bulletin</em>, 17, JAFLE, pp.147–160.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag">Assessment</span>
+              <span class="tag">Can-do Statements</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2014</div>
+          <div class="pub-body">
+            <div class="pub-title">Using and applying the CEFR – in the field of foreign language education and Korean language education as a foreign language in Korea</div>
+            <div class="pub-meta"><em>Progress Report from 2012 to 2013 on Comprehensive Study on Language Education Policies and Cross-Linguistic Proficiency Evaluation Methods for Asian Languages</em>, pp.39–50.</div>
+            <div class="pub-tags">
+              <span class="tag">Non-refereed</span>
+              <span class="tag">CEFR</span>
+              <span class="tag">Korean Language Education</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2014</div>
+          <div class="pub-body">
+            <div class="pub-title">Creation of writing assessment standard for intermediate-level Japanese learners' essays — based on the JF Standard</div>
+            <div class="pub-meta"><em>Language, Area and Culture Studies</em>, 20, Tokyo University of Foreign Studies, pp.193–213.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag">Writing Assessment</span>
+              <span class="tag">JF Standard</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2013</div>
+          <div class="pub-body">
+            <div class="pub-title">About effectiveness for self-assessment by beginner-level learners of the Korean language through approaches using can-do statements</div>
+            <div class="pub-meta"><em>JAFLE Bulletin</em>, 16, JAFLE, pp.86–104.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag">Self-assessment</span>
+              <span class="tag">Korean Language</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DOMESTIC CONFERENCES -->
+    <section class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">03 — conferences</div>
+        <h2 class="section-title">Domestic Presentations</h2>
+      </div>
+      <div class="pub-list">
+
+        <div class="pub-entry">
+          <div class="pub-year">2015</div>
+          <div class="pub-body">
+            <div class="pub-title">A proposal for an effective way of assessing Japanese essays: the Triangle Model using can-do statements and social network service</div>
+            <div class="pub-meta">JAFLE 17th Research Conference — Tokyo, Japan. Oral presentation.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag">Oral</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2013</div>
+          <div class="pub-body">
+            <div class="pub-title">The current situation on the introduction and application of CEFR for foreign language education and Korean language education as a foreign language in Korea</div>
+            <div class="pub-meta">2nd Research Seminar of Grant-In-Aid for Scientific Research (B) — Tokyo, Japan. Oral presentation.</div>
+            <div class="pub-tags">
+              <span class="tag">Non-refereed</span>
+              <span class="tag">Oral</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2013</div>
+          <div class="pub-body">
+            <div class="pub-title">Results and analysis from self-assessment for beginner-level learners of the Korean language</div>
+            <div class="pub-meta">JAFLE 16th Research Conference — Tokyo, Japan. Oral presentation.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag">Oral</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2012</div>
+          <div class="pub-body">
+            <div class="pub-title">Creation of writing assessment standard for intermediate-level Japanese learners' essays in the field of Japanese language education – based on the JF Standard</div>
+            <div class="pub-meta">2012 NKG Fall Conference — Sapporo, Hokkaido, Japan. Oral presentation.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag">Oral</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERNATIONAL CONFERENCES -->
+    <section class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">04 — international</div>
+        <h2 class="section-title">International Presentations</h2>
+      </div>
+      <div class="pub-list">
+
+        <div class="pub-entry">
+          <div class="pub-year">2014</div>
+          <div class="pub-body">
+            <div class="pub-title">What are the most important factors in assessing intermediate-level (CEFR B1) Japanese learners' essays effectively? — based on the survey results among current teachers of the Japanese language</div>
+            <div class="pub-meta">SYDNEY-ICJLE 2014 — Sydney, New South Wales, Australia. Poster presentation in English.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag intl">International</span>
+              <span class="tag">Poster · English</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2014</div>
+          <div class="pub-body">
+            <div class="pub-title">What are the most important factors in assessing intermediate-level Japanese learners' essays effectively?</div>
+            <div class="pub-meta">American Association for Applied Linguistics (AAAL) 2014 — Portland, Oregon, United States. Poster presentation in English.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag intl">International</span>
+              <span class="tag">Poster · English</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pub-entry">
+          <div class="pub-year">2013</div>
+          <div class="pub-body">
+            <div class="pub-title">A proposal for an effective way of assessing Japanese essays: the Triangle Model using can-do statements and social network service</div>
+            <div class="pub-meta">2013 ANU Japanese Studies Graduate Summer School — Canberra, ACT, Australia. Oral presentation in English.</div>
+            <div class="pub-tags">
+              <span class="tag refereed">Refereed</span>
+              <span class="tag intl">International</span>
+              <span class="tag">Oral · English</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-left">© <span id="year"></span> Areum Seo — Built with GitHub Pages</div>
+      <div class="footer-right">Seoul · South Korea</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
