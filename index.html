@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Areum Seo</title>
+  <meta name="description" content="Areum Seo — Localization PM, tool builder, and writer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --bg2: #ece8df;
+      --ink: #1a1714;
+      --ink2: #4a453e;
+      --ink3: #7a7268;
+      --rule: #ccc6b8;
+      --accent: #c94b2a;
+      --accent2: #e8a020;
+      --code-bg: #1a1714;
+      --code-fg: #e8c87a;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      font-size: 0.88rem;
+      color: var(--ink3);
+      list-style: none;
+    }
+
+    .nav-menu a:hover { color: var(--ink); }
+
+    .nav-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 3px 8px;
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: clamp(60px, 10vw, 100px) clamp(20px, 5vw, 60px) 0;
+      max-width: calc(var(--max) + 120px);
+      margin: 0 auto;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-eyebrow span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--ink3);
+    }
+
+    .hero-eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      animation: blink 2s ease infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.2rem, 8.5vw, 7rem);
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 900px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .hero-sub-item {
+      padding: 24px 0 24px;
+      border-right: 1px solid var(--rule);
+    }
+
+    .hero-sub-item:last-child {
+      border-right: none;
+      padding-left: 32px;
+    }
+
+    .hero-sub-item:first-child {
+      padding-right: 32px;
+    }
+
+    .hero-sub-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 8px;
+    }
+
+    .hero-sub-text {
+      font-size: 0.95rem;
+      color: var(--ink2);
+      line-height: 1.55;
+    }
+
+    /* ── TERMINAL STRIP ── */
+    .terminal-strip {
+      margin: 0 clamp(20px, 5vw, 60px);
+      border-radius: 8px;
+      background: var(--code-bg);
+      overflow: hidden;
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 16px;
+      background: #2a2520;
+    }
+
+    .terminal-bar .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+    }
+
+    .d-red { background: #ff5f57; }
+    .d-yellow { background: #ffbd2e; }
+    .d-green { background: #28c840; }
+
+    .terminal-bar span:last-child {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: #6a6258;
+      margin-left: 6px;
+    }
+
+    .terminal-body {
+      padding: 20px 24px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82rem;
+      line-height: 2;
+      color: #a89880;
+    }
+
+    .t-prompt { color: #5a8a5a; }
+    .t-cmd { color: var(--code-fg); }
+    .t-out { color: #8aaccc; }
+    .t-muted { color: #5a5248; }
+    .t-accent { color: #e87a60; }
+    .t-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 14px;
+      background: var(--code-fg);
+      vertical-align: middle;
+      animation: cursor 1s step-end infinite;
+    }
+
+    @keyframes cursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* ── SECTIONS ── */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    .section {
+      padding: 72px 0 0;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      align-items: start;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 40px;
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--ink3);
+      padding-top: 5px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    .about-text p + p { margin-top: 18px; }
+
+    .about-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .sidebar-row {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .sidebar-row:last-child { border-bottom: none; }
+
+    .sidebar-key {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      padding: 14px;
+      background: var(--bg2);
+      border-right: 1px solid var(--rule);
+      display: flex;
+      align-items: flex-start;
+      padding-top: 16px;
+    }
+
+    .sidebar-val {
+      font-size: 0.88rem;
+      color: var(--ink2);
+      padding: 14px 16px;
+      line-height: 1.5;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 60px 1fr auto;
+      gap: 28px;
+      align-items: start;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      transition: background 0.15s;
+    }
+
+    .project-row::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.2s ease;
+    }
+
+    .project-row:hover::before { transform: scaleY(1); }
+
+    .project-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink3);
+      padding-top: 4px;
+    }
+
+    .project-body h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .project-body p {
+      font-size: 0.9rem;
+      color: var(--ink3);
+      line-height: 1.6;
+      max-width: 520px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      color: var(--ink3);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 3px 8px;
+      background: var(--bg2);
+    }
+
+    .tag.tech { color: var(--accent); border-color: rgba(201,75,42,0.3); background: rgba(201,75,42,0.05); }
+
+    .project-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink3);
+      white-space: nowrap;
+      padding-top: 4px;
+      transition: color 0.15s;
+    }
+
+    .project-row:hover .project-link { color: var(--accent); }
+
+    /* ── WORK ── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .work-cell {
+      padding: 28px 32px;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .work-cell:nth-child(even) { border-right: none; }
+    .work-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+    .work-cell-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .work-cell h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .work-cell p {
+      font-size: 0.88rem;
+      color: var(--ink3);
+      line-height: 1.6;
+    }
+
+    /* ── ARCHIVE ── */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .archive-cell {
+      padding: 32px 28px 28px;
+      border-right: 1px solid var(--rule);
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .archive-cell:last-child { border-right: none; }
+
+    .archive-cell-icon {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+
+    .archive-cell-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    .archive-cell h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .archive-cell p {
+      font-size: 0.88rem;
+      color: var(--ink3);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .archive-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .contact-cell {
+      padding: 28px 32px;
+      border-right: 1px solid var(--rule);
+      transition: background 0.15s;
+    }
+
+    .contact-cell:last-child { border-right: none; }
+    .contact-cell:hover { background: var(--bg2); }
+
+    .contact-cell-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 8px;
+    }
+
+    .contact-cell a {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--ink);
+      display: block;
+    }
+
+    .contact-cell a:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      border-top: 1px solid var(--rule);
+      padding: 28px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-left {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink3);
+    }
+
+    .footer-right {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink3);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero-sub { grid-template-columns: 1fr; }
+      .hero-sub-item { border-right: none; border-top: 1px solid var(--rule); padding: 20px 0; }
+      .hero-sub-item:first-child { border-top: none; padding-left: 0; }
+      .hero-sub-item:last-child { padding-left: 0; }
+
+      .section-header { grid-template-columns: 1fr; gap: 8px; }
+
+      .about-grid { grid-template-columns: 1fr; }
+
+      .project-row { grid-template-columns: 40px 1fr; }
+      .project-link { display: none; }
+
+      .work-grid { grid-template-columns: 1fr; }
+      .work-cell { border-right: none; }
+      .work-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+      .work-cell:last-child { border-bottom: none; }
+
+      .archive-grid { grid-template-columns: 1fr; }
+      .archive-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+      .archive-cell:last-child { border-bottom: none; }
+
+      .contact-row { grid-template-columns: 1fr; }
+      .contact-cell { border-right: none; border-bottom: 1px solid var(--rule); }
+      .contact-cell:last-child { border-bottom: none; }
+    }
+
+    @media (max-width: 560px) {
+      .terminal-strip { border-radius: 0; margin: 0; }
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="#top">areum.seo</a>
+      <ul class="nav-menu">
+        <li><a href="#about">about</a></li>
+        <li><a href="#projects">projects</a></li>
+        <li><a href="#work">work</a></li>
+        <li><a href="#archive">archive</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+      <span class="nav-tag">open to work</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" class="hero">
+    <div class="hero-eyebrow">
+      <div class="dot"></div>
+      <span>Localization PM · Tool Builder · Writer · Seoul</span>
+    </div>
+    <h1>Language, <em>systems,</em><br>and the tools<br>that connect them.</h1>
+    <div class="hero-sub">
+      <div class="hero-sub-item">
+        <div class="hero-sub-label">What I do</div>
+        <div class="hero-sub-text">
+          I work across localization, language operations, and product thinking — building tools, improving multilingual workflows, and documenting things carefully.
+        </div>
+      </div>
+      <div class="hero-sub-item">
+        <div class="hero-sub-label">Currently</div>
+        <div class="hero-sub-text">
+          Expanding into tech — building apps with Python & Streamlit, shipping with GitHub, learning by making.
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TERMINAL STRIP -->
+  <div style="padding: 28px clamp(20px, 5vw, 60px); max-width: calc(var(--max) + 120px); margin: 0 auto;">
+    <div class="terminal-strip">
+      <div class="terminal-bar">
+        <div class="dot d-red"></div>
+        <div class="dot d-yellow"></div>
+        <div class="dot d-green"></div>
+        <span>areum@portfolio ~ </span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">→ </span><span class="t-cmd">whoami</span></div>
+        <div><span class="t-out">areum seo</span> <span class="t-muted"># localization pm, builder, writer</span></div>
+        <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cmd">ls ./skills</span></div>
+        <div><span class="t-out">korean</span> <span class="t-out">japanese</span> <span class="t-out">english</span> <span class="t-out">python</span> <span class="t-out">streamlit</span> <span class="t-out">localization-qa</span> <span class="t-out">vibe-coding</span></div>
+        <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cmd">cat ./now.txt</span></div>
+        <div><span class="t-accent">building tools</span> <span class="t-muted">+</span> <span class="t-accent">shipping to github</span> <span class="t-muted">+</span> <span class="t-accent">open to opportunities</span></div>
+        <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cursor"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <!-- ABOUT -->
+    <section id="about" class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">01 — about</div>
+        <h2 class="section-title">Who I am</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm Areum Seo — a localization professional with roots in translation, interpretation, QA, and cross-functional project management. I've spent years working between Korean, Japanese, and English, and I know what breaks when multilingual work meets messy processes.
+          </p>
+          <p>
+            Lately, I've been building. Small tools mostly — things that scratch real itches in localization workflows and personal practice. Python, Streamlit, GitHub. I don't call myself a developer yet, but I ship things and I keep going.
+          </p>
+          <p>
+            This site collects everything: current projects, professional experience, and older work from media, writing, and creative practice. It's meant to be a real archive, not a polished façade.
+          </p>
+        </div>
+        <div class="about-sidebar">
+          <div class="sidebar-row">
+            <div class="sidebar-key">base</div>
+            <div class="sidebar-val">Seoul, KR<br><span style="color:var(--ink3);font-size:0.82rem;">prev. Tokyo, JP</span></div>
+          </div>
+          <div class="sidebar-row">
+            <div class="sidebar-key">langs</div>
+            <div class="sidebar-val">Korean · Japanese · English</div>
+          </div>
+          <div class="sidebar-row">
+            <div class="sidebar-key">stack</div>
+            <div class="sidebar-val">Python · Streamlit · GitHub · vibe-coding</div>
+          </div>
+          <div class="sidebar-row">
+            <div class="sidebar-key">status</div>
+            <div class="sidebar-val" style="color:var(--accent);">Open to opportunities</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">02 — projects</div>
+        <h2 class="section-title">What I've built</h2>
+      </div>
+      <div class="projects-list">
+
+        <div class="project-row">
+          <div class="project-num">01</div>
+          <div class="project-body">
+            <h3>Text Diff Tool</h3>
+            <p>A lightweight Streamlit app for comparing source and revised text — visual diffing that actually makes sense for localization review.</p>
+            <div class="project-tags">
+              <span class="tag tech">Python</span>
+              <span class="tag tech">Streamlit</span>
+              <span class="tag tech">GitHub</span>
+              <span class="tag">Localization</span>
+            </div>
+          </div>
+          <div class="project-link">View →</div>
+        </div>
+
+        <div class="project-row">
+          <div class="project-num">02</div>
+          <div class="project-body">
+            <h3>Localization Workflow Experiments</h3>
+            <p>Small experiments making multilingual review and PM workflows simpler and more trackable. Ongoing iteration.</p>
+            <div class="project-tags">
+              <span class="tag">Localization</span>
+              <span class="tag">QA</span>
+              <span class="tag">Ops</span>
+              <span class="tag tech">Automation</span>
+            </div>
+          </div>
+          <div class="project-link">View →</div>
+        </div>
+
+        <div class="project-row">
+          <div class="project-num">03</div>
+          <div class="project-body">
+            <h3>Reading Notes App</h3>
+            <p>A personal archive concept for organizing notes, reflections, and reading-related metadata. Built for my own use first.</p>
+            <div class="project-tags">
+              <span class="tag tech">Prototype</span>
+              <span class="tag">Notes</span>
+              <span class="tag">Archive</span>
+            </div>
+          </div>
+          <div class="project-link">View →</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">03 — work</div>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div class="work-grid">
+        <div class="work-cell">
+          <div class="work-cell-label">Core</div>
+          <h3>Localization Project Management</h3>
+          <p>Managing multilingual workflows, stakeholder expectations, quality processes, and delivery timelines across languages and teams.</p>
+        </div>
+        <div class="work-cell">
+          <div class="work-cell-label">Craft</div>
+          <h3>Translation, Interpretation & QA</h3>
+          <p>Cross-lingual communication work across Korean, Japanese, and English — review, adaptation, and quality improvement.</p>
+        </div>
+        <div class="work-cell">
+          <div class="work-cell-label">Evolving</div>
+          <h3>Tool Building & Automation</h3>
+          <p>Bringing structured PM thinking into practical tooling — building utilities that make language work less painful and more trackable.</p>
+        </div>
+        <div class="work-cell">
+          <div class="work-cell-label">Background</div>
+          <h3>Media & Reporting</h3>
+          <p>Tokyo correspondent work and selected video reporting. Language-first coverage of culture, society, and place.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHIVE -->
+    <section id="archive" class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">04 — archive</div>
+        <h2 class="section-title">Other work</h2>
+      </div>
+      <div class="archive-grid">
+        <div class="archive-cell">
+          <div class="archive-cell-icon">▶</div>
+          <div class="archive-cell-label">Media</div>
+          <h3>Tokyo Correspondent</h3>
+          <p>Video reporting and dispatches from Tokyo. Culture, society, place — in and between languages.</p>
+          <a class="archive-link" href="#">Browse archive →</a>
+        </div>
+        <div class="archive-cell">
+          <div class="archive-cell-icon">◎</div>
+          <div class="archive-cell-label">Writing</div>
+          <h3>Publications & Research</h3>
+          <p>Long-form documentation, research notes, and essays developed over time. Some in English, some in Korean.</p>
+          <a class="archive-link" href="#">Read writing →</a>
+        </div>
+        <div class="archive-cell">
+          <div class="archive-cell-icon">✦</div>
+          <div class="archive-cell-label">Creative</div>
+          <h3>Photography & Ikebana</h3>
+          <p>Photography and flower arrangement work developed through long-term practice. Quiet, deliberate, seasonal.</p>
+          <a class="archive-link" href="#">See work →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">05 — contact</div>
+        <h2 class="section-title">Get in touch</h2>
+      </div>
+      <div class="contact-row">
+        <div class="contact-cell">
+          <div class="contact-cell-label">LinkedIn</div>
+          <a href="#">Add your profile link →</a>
+        </div>
+        <div class="contact-cell">
+          <div class="contact-cell-label">GitHub</div>
+          <a href="#">Add your repository →</a>
+        </div>
+        <div class="contact-cell">
+          <div class="contact-cell-label">Email</div>
+          <a href="#">Add your email →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-left">© <span id="year"></span> Areum Seo — Built with GitHub Pages</div>
+      <div class="footer-right">Seoul · KR</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
