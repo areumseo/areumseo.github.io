@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tokyo Correspondent — Areum Seo</title>
+  <meta name="description" content="Tokyo correspondent work by Areum Seo — reports and announcements for YTN Global Korean, 2013–2015." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --bg2: #ece8df;
+      --ink: #1a1714;
+      --ink2: #4a453e;
+      --ink3: #7a7268;
+      --rule: #ccc6b8;
+      --accent: #c94b2a;
+      --snowflake: #00A1D9;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      font-size: 0.88rem;
+      color: var(--ink3);
+      list-style: none;
+    }
+
+    .nav-menu a:hover { color: var(--ink); }
+
+    .nav-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--snowflake);
+      border: 1px solid var(--snowflake);
+      padding: 3px 8px;
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+
+    /* ── WRAP ── */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: clamp(48px, 8vw, 80px) clamp(20px, 5vw, 60px) 0;
+      max-width: calc(var(--max) + 120px);
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink3);
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover { color: var(--accent); }
+
+    .page-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 14px;
+    }
+
+    .page-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+
+    .page-desc {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: var(--ink3);
+      max-width: 620px;
+      line-height: 1.65;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 56px 0 0;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      align-items: start;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 32px;
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--ink3);
+      padding-top: 5px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    /* ── MEDIA ENTRIES ── */
+    .media-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .media-entry {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      transition: background 0.15s;
+    }
+
+    .media-entry::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.2s ease;
+    }
+
+    .media-entry:hover::before { transform: scaleY(1); }
+
+    .media-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink3);
+      white-space: nowrap;
+    }
+
+    .media-title {
+      font-size: 0.96rem;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .media-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.66rem;
+      letter-spacing: 0.04em;
+      color: var(--ink3);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 3px 8px;
+      background: var(--bg2);
+      white-space: nowrap;
+    }
+
+    .media-tag.report {
+      color: var(--accent);
+      border-color: rgba(201,75,42,0.3);
+      background: rgba(201,75,42,0.05);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      border-top: 1px solid var(--rule);
+      padding: 28px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-left {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink3);
+    }
+
+    .footer-right {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink3);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .section-header { grid-template-columns: 1fr; gap: 8px; }
+      .media-entry { grid-template-columns: 70px 1fr; }
+      .media-tag { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="index.html">areum.seo</a>
+      <ul class="nav-menu">
+        <li><a href="index.html#about">about</a></li>
+        <li><a href="index.html#projects">projects</a></li>
+        <li><a href="index.html#work">work</a></li>
+        <li><a href="index.html#archive">archive</a></li>
+        <li><a href="index.html#contact">contact</a></li>
+      </ul>
+      <a href="https://www.snowflake.com/ko/" target="_blank" class="nav-tag">@ Snowflake</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <a class="back-link" href="index.html">← Back to main</a>
+    <div class="page-eyebrow">04 — archive · media</div>
+    <h1 class="page-title">Tokyo<br>Correspondent</h1>
+    <p class="page-desc">
+      Reports and brief announcements aired in Global Korean of the Yonhap Television Network (YTN) from January 2013 to February 2015. All segments were broadcast in Korean.
+    </p>
+  </div>
+
+  <main class="wrap">
+
+    <!-- REPORTS -->
+    <section class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">01 — reports</div>
+        <h2 class="section-title">Reports</h2>
+      </div>
+      <div class="media-list">
+
+        <div class="media-entry">
+          <div class="media-date">Feb 2015</div>
+          <div class="media-title">Korean Traditional Music "Nong-Ak" in Japan</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Oct 2014</div>
+          <div class="media-title">Japan-Korea Festival</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">May 2014</div>
+          <div class="media-title">Koryo Museum in Tokyo</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Mar 2014</div>
+          <div class="media-title">About K-Literature!</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Mar 2014</div>
+          <div class="media-title">Learn a Korean Dialect Through Textbooks!</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Jan 2014</div>
+          <div class="media-title">Sun-Ok Cho, Korean Cooking Specialist</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Nov 2013</div>
+          <div class="media-title">10 Years in Review Korean Wave (Hallyu)</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Sep 2013</div>
+          <div class="media-title">The President of the Federation of Korean Associations</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Aug 2013</div>
+          <div class="media-title">About Machikon, A Dating Event in Japan</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Jun 2013</div>
+          <div class="media-title">Another Korean Wave (Hallyu) — Korean Musicals</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Feb 2013</div>
+          <div class="media-title">Experience Traditional Korean Culture on Lunar New Year's Day</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Jan 2013</div>
+          <div class="media-title">Takumi Fujimoto's Photography Exhibition</div>
+          <span class="media-tag report">Report</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BRIEF ANNOUNCEMENTS -->
+    <section class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">02 — announcements</div>
+        <h2 class="section-title">Brief Announcements</h2>
+      </div>
+      <div class="media-list">
+
+        <div class="media-entry">
+          <div class="media-date">Dec 2014</div>
+          <div class="media-title">The 1st Korean Speech Contest</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Nov 2014</div>
+          <div class="media-title">An Evening Event with Korean and Japanese Authors</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Sep 2014</div>
+          <div class="media-title">Korean Modern Novel Discussion Group</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Aug 2014</div>
+          <div class="media-title">An Exhibition of Donghak Peasant Revolution and the Sino-Japanese War</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Jul 2014</div>
+          <div class="media-title">An Exhibition of 21st Century Youth Delegation</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Jun 2014</div>
+          <div class="media-title">A Special Performance Celebrating 35th Anniversary of Korean Cultural Center</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Jun 2014</div>
+          <div class="media-title">An Exhibition of Korean Cosmetic Culture</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Oct 2013</div>
+          <div class="media-title">Taekwondo Performance "Tal"</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Oct 2013</div>
+          <div class="media-title">Japan-Korea Festival 2013</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+        <div class="media-entry">
+          <div class="media-date">Aug 2013</div>
+          <div class="media-title">The 1st Japan-Korea Concert "Kakehashi"</div>
+          <span class="media-tag">Announcement</span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-left">© <span id="year"></span> Areum Seo — Built with GitHub Pages</div>
+      <div class="footer-right">Seoul · South Korea</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
