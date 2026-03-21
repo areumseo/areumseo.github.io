@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work Experience — Areum Seo</title>
+  <meta name="description" content="Translation, interpretation, and achievement work by Areum Seo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --bg2: #ece8df;
+      --ink: #1a1714;
+      --ink2: #4a453e;
+      --ink3: #7a7268;
+      --rule: #ccc6b8;
+      --accent: #c94b2a;
+      --snowflake: #00A1D9;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 20px;
+    }
+
+    .brand {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      font-size: 0.88rem;
+      color: var(--ink3);
+      list-style: none;
+    }
+
+    .nav-menu a:hover { color: var(--ink); }
+
+    .nav-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--snowflake);
+      border: 1px solid var(--snowflake);
+      padding: 3px 8px;
+      border-radius: 3px;
+      opacity: 0.8;
+    }
+
+    /* ── WRAP ── */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 5vw, 60px);
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: clamp(48px, 8vw, 80px) clamp(20px, 5vw, 60px) 0;
+      max-width: calc(var(--max) + 120px);
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink3);
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover { color: var(--accent); }
+
+    .page-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 14px;
+    }
+
+    .page-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 700px;
+    }
+
+    .page-desc {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: var(--ink3);
+      max-width: 620px;
+      line-height: 1.65;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 56px 0 0;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      align-items: start;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--rule);
+      margin-bottom: 32px;
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--ink3);
+      padding-top: 5px;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    /* ── JOB ENTRIES ── */
+    .job-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .job-entry {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 40px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    .job-entry::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.2s ease;
+    }
+
+    .job-entry:hover::before { transform: scaleY(1); }
+
+    .job-meta {
+      padding-top: 3px;
+    }
+
+    .job-company {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--ink3);
+      margin-bottom: 4px;
+    }
+
+    .job-period {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--accent);
+    }
+
+    .job-body h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .job-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .job-body ul li {
+      font-size: 0.88rem;
+      color: var(--ink3);
+      line-height: 1.55;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .job-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rule);
+    }
+
+    /* ── INTERPRETATION EVENTS ── */
+    .event-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .event-entry {
+      display: grid;
+      grid-template-columns: 80px 1fr auto;
+      gap: 24px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    .event-entry::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.2s ease;
+    }
+
+    .event-entry:hover::before { transform: scaleY(1); }
+
+    .event-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--ink3);
+      white-space: nowrap;
+    }
+
+    .event-title {
+      font-size: 0.9rem;
+      color: var(--ink);
+      line-height: 1.45;
+    }
+
+    .event-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.04em;
+      color: var(--ink3);
+      border: 1px solid var(--rule);
+      border-radius: 3px;
+      padding: 2px 7px;
+      background: var(--bg2);
+      white-space: nowrap;
+    }
+
+    .event-tag.consec {
+      color: var(--accent);
+      border-color: rgba(201,75,42,0.3);
+      background: rgba(201,75,42,0.05);
+    }
+
+    .event-tag.simul {
+      color: var(--snowflake);
+      border-color: rgba(0,161,217,0.3);
+      background: rgba(0,161,217,0.05);
+    }
+
+    /* ── ACHIEVEMENT ENTRIES ── */
+    .achievement-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .achievement-cell {
+      padding: 28px 32px;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .achievement-cell:nth-child(even) { border-right: none; }
+    .achievement-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+    .achievement-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .achievement-cell h3 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .achievement-item {
+      font-size: 0.86rem;
+      color: var(--ink3);
+      line-height: 1.7;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .achievement-item::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rule);
+    }
+
+    .achievement-sub {
+      font-size: 0.82rem;
+      color: var(--ink3);
+      padding-left: 24px;
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      margin-top: 80px;
+      border-top: 1px solid var(--rule);
+      padding: 28px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-left {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--ink3);
+    }
+
+    .footer-right {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink3);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .section-header { grid-template-columns: 1fr; gap: 8px; }
+      .job-entry { grid-template-columns: 1fr; gap: 8px; }
+      .event-entry { grid-template-columns: 64px 1fr; }
+      .event-tag { display: none; }
+      .achievement-grid { grid-template-columns: 1fr; }
+      .achievement-cell { border-right: none; }
+      .achievement-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+      .achievement-cell:last-child { border-bottom: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="brand" href="index.html">areum.seo</a>
+      <ul class="nav-menu">
+        <li><a href="index.html#about">about</a></li>
+        <li><a href="index.html#projects">projects</a></li>
+        <li><a href="index.html#work">work</a></li>
+        <li><a href="index.html#archive">archive</a></li>
+        <li><a href="index.html#contact">contact</a></li>
+      </ul>
+      <a href="https://www.snowflake.com/ko/" target="_blank" class="nav-tag">@ Snowflake</a>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <a class="back-link" href="index.html">← Back to main</a>
+    <div class="page-eyebrow">03 — work</div>
+    <h1 class="page-title">Translation,<br>Interpretation<br>& Achievement</h1>
+    <p class="page-desc">
+      A full record of translation, localization, and interpretation work across Korean, Japanese, and English — spanning gaming, technical docs, legal, marketing, media, and live events.
+    </p>
+  </div>
+
+  <main class="wrap">
+
+    <!-- TRANSLATION -->
+    <section class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">01 — translation</div>
+        <h2 class="section-title">Translation</h2>
+      </div>
+      <div class="job-list">
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">kakaopiccoma Corp.</div>
+            <div class="job-period">2024 – 2025</div>
+          </div>
+          <div class="job-body">
+            <h3>In-House Interpreter / Translator</h3>
+            <ul>
+              <li>Simultaneous/consecutive interpretation between Korean, English, and Japanese for business meetings, events, and seminars</li>
+              <li>Full range of translation and localization services between Korean, English, and Japanese</li>
+              <li>Assisted business development and business analysis</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">TransPerfect</div>
+            <div class="job-period">2021 – present</div>
+          </div>
+          <div class="job-body">
+            <h3>Freelance Translator / Proofreader / QSR Reviewer</h3>
+            <ul>
+              <li>Translation and localization from English to Korean for technical documents</li>
+              <li>Translation and localization from Korean to Japanese for technical documents and marketing materials</li>
+              <li>3rd party review between Korean and Japanese for IT and marketing materials in the QSR team</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">Lionbridge Technologies</div>
+            <div class="job-period">2019 – present</div>
+          </div>
+          <div class="job-body">
+            <h3>Freelance Translator / Reviewer / LQA Specialist</h3>
+            <ul>
+              <li>Translation and localization from English to Japanese for technical documents, marketing, user manuals, gaming, and AI</li>
+              <li>Translation and localization between Korean and Japanese for technical, legal, marketing, web content, gaming, and webtoon</li>
+              <li>LQI (Language Quality Inspection) for English–Japanese and Japanese–Korean</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">Snowflake</div>
+            <div class="job-period">2023 – 2024</div>
+          </div>
+          <div class="job-body">
+            <h3>Language Lead</h3>
+            <ul>
+              <li>Reviewed translations and ensured quality across target languages</li>
+              <li>Worked closely with stakeholders to align translations with expectations</li>
+              <li>Supported internal teams with urgent translations and language-specific questions</li>
+              <li>Owned evaluation and management of linguistic assets and query management</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">Lionbridge Technologies</div>
+            <div class="job-period">2020 – 2021</div>
+          </div>
+          <div class="job-body">
+            <h3>Translation Unit Lead (TUL)</h3>
+            <ul>
+              <li>Ensured timely deliveries across projects within budget and quality criteria</li>
+              <li>Liaised with Operations teams for project preparation and execution</li>
+              <li>Coordinated localization teams on scheduling, work distribution, and financial reporting</li>
+              <li>Monitored project quality and organized QA/QC tasks</li>
+              <li>First point of escalation for Operations and TU Linguists</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">Flitto Inc.</div>
+            <div class="job-period">2019 – 2020</div>
+          </div>
+          <div class="job-body">
+            <h3>Project Manager</h3>
+            <ul>
+              <li>Reviewed requirements documents and offered translation QA service</li>
+              <li>Handled internal communication between the Japan office and Korean headquarters</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">NHN Japan Corp.</div>
+            <div class="job-period">2015 – 2017</div>
+          </div>
+          <div class="job-body">
+            <h3>In-House Translator</h3>
+            <ul>
+              <li>Full range of translation and localization between Korean and Japanese for documents, websites, and marketing materials in corporate, legal, and financial sectors</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERPRETATION -->
+    <section class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">02 — interpretation</div>
+        <h2 class="section-title">Interpretation</h2>
+      </div>
+
+      <div class="job-list" style="margin-bottom: 40px;">
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">Arches</div>
+            <div class="job-period">2022 – present</div>
+          </div>
+          <div class="job-body">
+            <h3>Freelance Interpreter</h3>
+            <ul>
+              <li>Consecutive interpretation between Korean and Japanese for business meetings, events, and seminars</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">kakaopiccoma Corp.</div>
+            <div class="job-period">2021 – 2024</div>
+          </div>
+          <div class="job-body">
+            <h3>Freelance In-House Interpreter</h3>
+            <ul>
+              <li>Simultaneous/consecutive interpretation between Korean, Japanese, and English for business meetings, events, and seminars</li>
+              <li>Full range of translation and localization for corporate, legal, and financial documents</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="job-entry">
+          <div class="job-meta">
+            <div class="job-company">NHN comico Corp.</div>
+            <div class="job-period">2015 – 2017</div>
+          </div>
+          <div class="job-body">
+            <h3>In-House Interpreter</h3>
+            <ul>
+              <li>Soul Worker Offline Event — simultaneous interpretation</li>
+              <li>DragonNest Fan Event 2016 — consecutive interpretation</li>
+              <li>Elsword Fan Day 2016 — consecutive interpretation</li>
+              <li>DragonNest 'Reboot' — simultaneous interpretation</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <p style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:20px;">Freelance · 2007 – present · Japanese–Korean</p>
+      <div class="event-list">
+        <div class="event-entry"><div class="event-date">Apr 2023</div><div class="event-title">kakaogames Japan: 'ODIN' Press Release</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Jul 2023</div><div class="event-title">Huluオリジナル「挑戦者・山下智久」</div><span class="event-tag simul">Both</span></div>
+        <div class="event-entry"><div class="event-date">Sep 2014</div><div class="event-title">Korea-Japan Parts Industry Fair</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Apr 2014</div><div class="event-title">Business Meeting for Small Companies in Korea</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Mar 2014</div><div class="event-title">Trade Delegation from Ulsan for Japan</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Jul 2013</div><div class="event-title">Korea-Japan ICT Partnering in KDDI</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Jun 2013</div><div class="event-title">Smart Korea Forum in Japan</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Dec 2012</div><div class="event-title">Korea-Japan ICT Partnering Forum</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Jun 2012</div><div class="event-title">Korea IT EXPO Business Meeting</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Feb 2012</div><div class="event-title">Business Meeting for Machine Companies</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Nov 2011</div><div class="event-title">Business Meeting for Auto Parts Industries</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Nov 2011</div><div class="event-title">Business Meeting for Small Companies in Korea</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Sep 2011</div><div class="event-title">Korea Green Business Meetings 2011</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Oct 2010</div><div class="event-title">Foodex Japan</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Mar 2009</div><div class="event-title">Intermold Korea</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Nov 2008</div><div class="event-title">Global Mobile Vision</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Sep 2008</div><div class="event-title">Study Abroad in Japan</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Jun 2008</div><div class="event-title">Korea International Boat Show</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">May 2008</div><div class="event-title">Korea-Japan Seeds & Needs Forum</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">May 2008</div><div class="event-title">Business Meeting for International Electricity</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Apr 2008</div><div class="event-title">SIMTOS</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Oct 2007</div><div class="event-title">Aviation and Space Forum</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Sep 2007</div><div class="event-title">Business Meeting for Parts Industry</div><span class="event-tag consec">Consecutive</span></div>
+        <div class="event-entry"><div class="event-date">Mar 2007</div><div class="event-title">Intermold Korea</div><span class="event-tag consec">Consecutive</span></div>
+      </div>
+
+      <p style="font-family:'DM Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);margin: 32px 0 20px;">Freelance · Japanese–Korean/English</p>
+      <div class="event-list">
+        <div class="event-entry"><div class="event-date">Sep 2011</div><div class="event-title">Japan Jewellery Fair</div><span class="event-tag simul">Both</span></div>
+        <div class="event-entry"><div class="event-date">Jun 2011</div><div class="event-title">International Fashion Fair (India Pavilion)</div><span class="event-tag simul">Both</span></div>
+        <div class="event-entry"><div class="event-date">Aug 2008</div><div class="event-title">Business Meeting for Small Companies in Korea</div><span class="event-tag simul">Both</span></div>
+        <div class="event-entry"><div class="event-date">Jun 2008</div><div class="event-title">LED EXPO</div><span class="event-tag simul">Both</span></div>
+        <div class="event-entry"><div class="event-date">May 2008</div><div class="event-title">Global Bio-Tech Forum</div><span class="event-tag simul">Both</span></div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENT -->
+    <section class="section fade-up">
+      <div class="section-header">
+        <div class="section-num">03 — achievement</div>
+        <h2 class="section-title">Achievement</h2>
+      </div>
+      <div class="achievement-grid">
+
+        <div class="achievement-cell">
+          <div class="achievement-label">Game Translation · English–Korean</div>
+          <h3>World of Horror</h3>
+          <div class="achievement-item">Ysbryd Games</div>
+        </div>
+
+        <div class="achievement-cell">
+          <div class="achievement-label">Website Translation · Korean–English</div>
+          <h3>Clean Air International Forum (CAIF)</h3>
+          <div class="achievement-item">2025 CAIF</div>
+          <div class="achievement-item">2024 CAIF</div>
+          <div class="achievement-item">2023 CAIF</div>
+        </div>
+
+        <div class="achievement-cell">
+          <div class="achievement-label">Interpretation · Japanese–Korean/English</div>
+          <h3>Hulu Original</h3>
+          <div class="achievement-item">Huluオリジナル「挑戦者・山下智久」, July 2023</div>
+        </div>
+
+        <div class="achievement-cell">
+          <div class="achievement-label">Subtitle Translation · Korean–Japanese</div>
+          <h3>ABEMA TV: 少年ファンタジー<br>～放課後のときめきシーズン2～</h3>
+          <div class="achievement-sub">第1話 – 第11話 先行映像</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap footer-inner">
+      <div class="footer-left">© <span id="year"></span> Areum Seo — Built with GitHub Pages</div>
+      <div class="footer-right">Seoul · South Korea</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
