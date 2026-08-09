@@ -99,6 +99,33 @@
       margin: 0 auto;
     }
 
+    .hero-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: clamp(32px, 5vw, 72px);
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-portrait {
+      flex-shrink: 0;
+      width: clamp(160px, 20vw, 260px);
+    }
+
+    .hero-portrait img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+    }
+
+    @media (max-width: 640px) {
+      .hero-inner { flex-direction: column-reverse; align-items: center; }
+      .hero-portrait { width: 140px; }
+    }
+
     .hero-eyebrow {
       display: flex;
       align-items: center;
@@ -638,11 +665,18 @@
 
   <!-- HERO -->
   <header id="top" class="hero">
-    <div class="hero-eyebrow">
-      <div class="dot"></div>
-      <span>Project Manager · Localization Specialist · Writer · Seoul</span>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="dot"></div>
+          <span>Project Manager · Localization Specialist · Writer · Seoul</span>
+        </div>
+        <h1>Language, <em>systems,</em><br>and the tools<br>that connect them.</h1>
+      </div>
+      <div class="hero-portrait">
+        <img src="profile.png" alt="Areum Seo illustration" />
+      </div>
     </div>
-    <h1>Language, <em>systems,</em><br>and the tools<br>that connect them.</h1>
     <div class="hero-sub">
       <div class="hero-sub-item">
         <div class="hero-sub-label">What I do</div>
