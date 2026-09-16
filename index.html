@@ -113,18 +113,57 @@
     .hero-portrait {
       flex-shrink: 0;
       width: clamp(160px, 20vw, 260px);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    .hero-portrait img {
+    .hero-portrait > img {
       width: 100%;
       border-radius: 16px;
       display: block;
       mix-blend-mode: multiply;
     }
 
+    /* CoWork demo clip */
+    .hero-demo {
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+
+    .hero-demo img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .hero-demo-caption {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.02em;
+      line-height: 1.4;
+      color: var(--ink3);
+    }
+
+    .hero-demo-caption .live {
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
     @media (max-width: 640px) {
       .hero-inner { flex-direction: column-reverse; align-items: center; }
-      .hero-portrait { width: 140px; }
+      .hero-portrait { width: 200px; }
     }
 
     .hero-eyebrow {
@@ -676,19 +715,26 @@
       </div>
       <div class="hero-portrait">
         <img src="profile.png" alt="Areum Seo illustration" />
+        <figure class="hero-demo">
+          <img src="cowork-demo.gif" alt="Areum Seo demoing CoWork at the product experience zone" onerror="this.closest('.hero-demo').remove()" />
+          <figcaption class="hero-demo-caption">
+            <span class="live"></span>
+            <span>Demoing CoWork at the product experience zone</span>
+          </figcaption>
+        </figure>
       </div>
     </div>
     <div class="hero-sub">
       <div class="hero-sub-item">
         <div class="hero-sub-label">What I do</div>
         <div class="hero-sub-text">
-          I work across localization, language operations, and product thinking — building tools, improving multilingual workflows, and documenting things carefully.
+          I sit between language and systems — running localization and language operations, shaping multilingual workflows, and building the small tools that hold them together.
         </div>
       </div>
       <div class="hero-sub-item">
         <div class="hero-sub-label">Currently</div>
         <div class="hero-sub-text">
-          Expanding into tech as a vibe coder — building apps with Streamlit, Snowflake Cortex Code, shipping with GitHub, learning by making.
+          At Snowflake, building with Streamlit and Cortex Code, shipping iOS apps on the side, and demoing CoWork on the floor of our product experience zone.
         </div>
       </div>
     </div>
@@ -709,7 +755,7 @@
         <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cmd">ls ./skills</span></div>
         <div><span class="t-out">korean</span> <span class="t-out">japanese</span> <span class="t-out">english</span> <span class="t-out">python</span> <span class="t-out">streamlit</span> <span class="t-out">sql</span> <span class="t-out">localization-qa</span> <span class="t-out">vibe-coding</span></div>
         <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cmd">cat ./now.txt</span></div>
-        <div><span class="t-accent">building iOS apps</span> <span class="t-muted">+</span> <span class="t-accent">@ snowflake</span> <span class="t-muted">+</span> <span class="t-accent">shipping to github</span></div>
+        <div><span class="t-accent">@ snowflake</span> <span class="t-muted">+</span> <span class="t-accent">building iOS apps</span> <span class="t-muted">+</span> <span class="t-accent">demoing cowork</span></div>
         <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cursor"></span></div>
       </div>
     </div>
@@ -726,13 +772,13 @@
       <div class="about-grid">
         <div class="about-text">
           <p>
-            I'm Areum Seo — a localization professional, linguist, and builder working across Korean, Japanese, and English. I came to Tokyo on a MEXT scholarship, completed a master's in applied linguistics at Tokyo University of Foreign Studies, and spent years teaching Japanese at Waseda and Korean at JCFL before moving into industry.
+            I'm Areum Seo — a localization professional, linguist, and builder working across Korean, Japanese, and English. I came to Tokyo on a MEXT scholarship, took a master's in applied linguistics at Tokyo University of Foreign Studies, and taught Japanese at Waseda and Korean at JCFL before moving into industry. Teaching is where I learned to explain a system to someone who has never seen it — which turns out to be most of what I still do.
           </p>
           <p>
-            My professional work spans localization QA, translation, project management, and language operations — with past experience at Amazon Japan, where I received a Customer Obsession Award. My expertise runs across linguistics, gaming, technical docs, marketing, and entertainment.
+            Since then my work has spanned localization QA, translation, project management, and language operations, across linguistics, gaming, technical documentation, marketing, and entertainment — including a stretch at Amazon Japan, where I received a Customer Obsession Award. Most recently I stood in our product experience zone demoing CoWork to visitors: same instinct as the classroom, shorter attention span.
           </p>
           <p>
-            Lately I've been building. Python, SQL, Streamlit, Snowflake, GitHub. I hold a SnowPro Associate certification and have been earning credentials in data engineering and generative AI in Coursera. I don't call myself a developer yet — but I ship things, and I keep going.
+            Lately I've been building: Python, SQL, Streamlit, Snowflake, GitHub, and a handful of iOS apps. I hold a SnowPro Associate certification and keep picking up credentials in data engineering and generative AI along the way. I don't call myself a developer yet — but I ship things, and I keep going.
           </p>
         </div>
         <div class="about-sidebar">
