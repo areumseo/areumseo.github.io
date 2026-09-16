@@ -112,10 +112,9 @@
 
     .hero-portrait {
       flex-shrink: 0;
-      width: clamp(240px, 28vw, 340px);
+      width: clamp(160px, 20vw, 234px);
       display: flex;
       align-items: flex-start;
-      gap: 14px;
     }
 
     .hero-portrait > img {
@@ -156,8 +155,8 @@
       padding: 8px 10px;
       border-top: 1px solid var(--rule);
       font-family: 'DM Mono', monospace;
-      font-size: 0.64rem;
-      letter-spacing: 0.02em;
+      font-size: 0.62rem;
+      letter-spacing: 0.01em;
       line-height: 1.4;
       color: var(--ink3);
     }
@@ -172,7 +171,7 @@
 
     @media (max-width: 640px) {
       .hero-inner { flex-direction: column-reverse; align-items: center; }
-      .hero-portrait { width: 260px; }
+      .hero-portrait { width: 180px; }
     }
 
     .hero-eyebrow {
@@ -723,18 +722,17 @@
         <h1>Language, <em>systems,</em><br>and the tools<br>that connect them.</h1>
       </div>
       <div class="hero-portrait">
-        <img src="profile.png" alt="Areum Seo illustration" />
         <figure class="hero-demo">
           <video autoplay loop muted playsinline preload="metadata"
                  poster="cowork-demo-poster.jpg"
-                 aria-label="Areum Seo demoing CoWork at the product experience zone">
+                 aria-label="Areum Seo demoing Snowflake CoWork at Snowflake World Tour Seoul">
             <source src="cowork-demo.webm" type="video/webm" />
             <source src="cowork-demo.mp4" type="video/mp4" />
-            <img src="cowork-demo-poster.jpg" alt="Areum Seo demoing CoWork at the product experience zone" />
+            <img src="cowork-demo-poster.jpg" alt="Areum Seo demoing Snowflake CoWork at Snowflake World Tour Seoul" />
           </video>
           <figcaption class="hero-demo-caption">
             <span class="live"></span>
-            <span>Demoing CoWork &middot; experience zone</span>
+            <span>Demoing Snowflake CoWork<br />at Snowflake World Tour Seoul</span>
           </figcaption>
         </figure>
       </div>
@@ -761,7 +759,7 @@
       <div class="hero-sub-item">
         <div class="hero-sub-label">Currently</div>
         <div class="hero-sub-text">
-          At Snowflake, building with Streamlit and Cortex Code, shipping iOS apps on the side, and demoing CoWork on the floor of our product experience zone.
+          At Snowflake, building with Streamlit and Cortex Code, shipping iOS apps on the side, and demoing CoWork on the floor at Snowflake World Tour Seoul.
         </div>
       </div>
     </div>
