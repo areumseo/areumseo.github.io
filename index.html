@@ -112,14 +112,15 @@
 
     .hero-portrait {
       flex-shrink: 0;
-      width: clamp(160px, 20vw, 260px);
+      width: clamp(240px, 28vw, 340px);
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      align-items: flex-start;
+      gap: 14px;
     }
 
     .hero-portrait > img {
-      width: 100%;
+      flex: 1.25 1 0;
+      min-width: 0;
       border-radius: 16px;
       display: block;
       mix-blend-mode: multiply;
@@ -127,17 +128,25 @@
 
     /* CoWork demo clip */
     .hero-demo {
+      flex: 1 1 0;
+      min-width: 0;
       border: 1px solid var(--rule);
       border-radius: 12px;
       overflow: hidden;
       background: var(--bg2);
     }
 
-    .hero-demo img {
+    .hero-demo video {
       width: 100%;
       display: block;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 9 / 16;
       object-fit: cover;
+      background: var(--bg2);
+    }
+
+    .hero-demo video img {
+      width: 100%;
+      display: block;
     }
 
     .hero-demo-caption {
@@ -163,7 +172,7 @@
 
     @media (max-width: 640px) {
       .hero-inner { flex-direction: column-reverse; align-items: center; }
-      .hero-portrait { width: 200px; }
+      .hero-portrait { width: 260px; }
     }
 
     .hero-eyebrow {
@@ -716,13 +725,31 @@
       <div class="hero-portrait">
         <img src="profile.png" alt="Areum Seo illustration" />
         <figure class="hero-demo">
-          <img src="cowork-demo.gif" alt="Areum Seo demoing CoWork at the product experience zone" onerror="this.closest('.hero-demo').remove()" />
+          <video autoplay loop muted playsinline preload="metadata"
+                 poster="cowork-demo-poster.jpg"
+                 aria-label="Areum Seo demoing CoWork at the product experience zone">
+            <source src="cowork-demo.webm" type="video/webm" />
+            <source src="cowork-demo.mp4" type="video/mp4" />
+            <img src="cowork-demo-poster.jpg" alt="Areum Seo demoing CoWork at the product experience zone" />
+          </video>
           <figcaption class="hero-demo-caption">
             <span class="live"></span>
-            <span>Demoing CoWork at the product experience zone</span>
+            <span>Demoing CoWork &middot; experience zone</span>
           </figcaption>
         </figure>
       </div>
+      <script>
+        // Honor reduced-motion: freeze the demo loop on its poster frame.
+        (function () {
+          var q = window.matchMedia('(prefers-reduced-motion: reduce)');
+          var v = document.querySelector('.hero-demo video');
+          if (!v) return;
+          function sync() { if (q.matches) { v.removeAttribute('loop'); v.pause(); } }
+          sync();
+          q.addEventListener('change', sync);
+          v.addEventListener('play', sync);
+        })();
+      </script>
     </div>
     <div class="hero-sub">
       <div class="hero-sub-item">
