@@ -478,6 +478,10 @@
     .tag.tech { color: var(--accent); border-color: rgba(201,75,42,0.3); background: rgba(201,75,42,0.05); }
 
     .project-link {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
       color: var(--ink3);
@@ -485,6 +489,8 @@
       padding-top: 4px;
       transition: color 0.15s;
     }
+
+    .project-link a.play { color: var(--accent); }
 
     .project-row:hover .project-link { color: var(--accent); }
 
@@ -661,7 +667,14 @@
       .about-grid { grid-template-columns: 1fr; }
 
       .project-row { grid-template-columns: 40px 1fr; }
-      .project-link { display: none; }
+      .project-link {
+        grid-column: 2;
+        flex-direction: row;
+        align-items: center;
+        gap: 18px;
+        padding-top: 0;
+        margin-top: 14px;
+      }
 
       .work-grid { grid-template-columns: 1fr; }
       .work-cell { border-right: none; }
@@ -884,6 +897,25 @@
             </div>
           </div>
           <div class="project-link"><a href="https://github.com/areumseo/alliegent" target="_blank">GitHub →</a></div>
+        </div>
+
+        <div class="project-row">
+          <div class="project-num">04</div>
+          <div class="project-body">
+            <h3>Moon Rabbit&rsquo;s Way Home</h3>
+            <p>A Chuseok runner game in the spirit of the Chrome dino. Help the moon rabbit get home for the holiday by jumping over relatives&rsquo; nagging &mdash; &ldquo;Married yet?&rdquo;, &ldquo;How much do you make?&rdquo; &mdash; and grabbing songpyeon along the way. Built in a day with Claude Code as a single HTML file, with Korean and English versions localized rather than translated so every nag lands in both languages, plus shareable score cards.</p>
+            <div class="project-tags">
+              <span class="tag tech">Canvas 2D</span>
+              <span class="tag tech">JavaScript</span>
+              <span class="tag tech">Claude Code</span>
+              <span class="tag">KO / EN</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
+          </div>
+          <div class="project-link">
+            <a class="play" href="https://areumseo.com/moon-rabbit-run/" target="_blank">Play →</a>
+            <a href="https://github.com/areumseo/moon-rabbit-run" target="_blank">GitHub →</a>
+          </div>
         </div>
 
       </div>
