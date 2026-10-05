@@ -511,7 +511,12 @@
     }
 
     .work-cell:nth-child(even) { border-right: none; }
-    .work-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .work-cell:last-child { border-bottom: none; }
+
+    .work-cell.wide {
+      grid-column: 1 / -1;
+      border-right: none;
+    }
 
     .work-cell-label {
       font-family: 'DM Mono', monospace;
@@ -532,62 +537,6 @@
       font-size: 0.88rem;
       color: var(--ink3);
       line-height: 1.6;
-    }
-
-    /* ── ARCHIVE ── */
-    .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 0;
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .archive-cell {
-      padding: 32px 28px 28px;
-      border-right: 1px solid var(--rule);
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .archive-cell:last-child { border-right: none; }
-
-    .archive-cell-icon {
-      font-size: 1.5rem;
-      margin-bottom: 6px;
-    }
-
-    .archive-cell-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink3);
-    }
-
-    .archive-cell h3 {
-      font-size: 1.05rem;
-      font-weight: 500;
-    }
-
-    .archive-cell p {
-      font-size: 0.88rem;
-      color: var(--ink3);
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .archive-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      margin-top: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
     }
 
     /* ── CONTACT ── */
@@ -681,9 +630,6 @@
       .work-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
       .work-cell:last-child { border-bottom: none; }
 
-      .archive-grid { grid-template-columns: 1fr; }
-      .archive-cell { border-right: none; border-bottom: 1px solid var(--rule); }
-      .archive-cell:last-child { border-bottom: none; }
 
       .contact-row { grid-template-columns: 1fr; }
       .contact-cell { border-right: none; border-bottom: 1px solid var(--rule); }
@@ -717,7 +663,6 @@
         <li><a href="#about">about</a></li>
         <li><a href="#projects">projects</a></li>
         <li><a href="#work">work</a></li>
-        <li><a href="#archive">archive</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
       <a href="https://www.snowflake.com/ko/" target="_blank" class="nav-tag">@ Snowflake</a>
@@ -961,22 +906,11 @@
           <p>Academic work in linguistics, language education, and assessment — developed during graduate study in Tokyo.</p>
           <a href="publications.html" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);margin-top:12px;display:inline-block;">Browse archive →</a>
         </div>
-      </div>
-    </section>
-
-    <!-- ARCHIVE -->
-    <section id="archive" class="section fade-up">
-      <div class="section-header">
-        <div class="section-num">04 — archive</div>
-        <h2 class="section-title">Other work</h2>
-      </div>
-      <div class="archive-grid">
-        <div class="archive-cell">
-          <div class="archive-cell-icon">▶</div>
-          <div class="archive-cell-label">Media</div>
+        <div class="work-cell wide">
+          <div class="work-cell-label">Beyond</div>
           <h3>Media & Reporting</h3>
           <p>Tokyo correspondent work and selected video reporting. Language-first coverage of culture, society, and place.</p>
-          <a class="archive-link" href="media.html">Browse archive →</a>
+          <a href="media.html" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);margin-top:12px;display:inline-block;">Browse archive →</a>
         </div>
       </div>
     </section>
@@ -984,7 +918,7 @@
     <!-- CONTACT -->
     <section id="contact" class="section fade-up">
       <div class="section-header">
-        <div class="section-num">05 — contact</div>
+        <div class="section-num">04 — contact</div>
         <h2 class="section-title">Get in touch</h2>
       </div>
       <div class="contact-row" style="grid-template-columns: 1fr 1fr;">
