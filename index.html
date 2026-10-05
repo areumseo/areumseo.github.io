@@ -511,7 +511,12 @@
     }
 
     .work-cell:nth-child(even) { border-right: none; }
-    .work-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .work-cell:last-child { border-bottom: none; }
+
+    .work-cell.wide {
+      grid-column: 1 / -1;
+      border-right: none;
+    }
 
     .work-cell-label {
       font-family: 'DM Mono', monospace;
@@ -532,62 +537,6 @@
       font-size: 0.88rem;
       color: var(--ink3);
       line-height: 1.6;
-    }
-
-    /* ── ARCHIVE ── */
-    .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .archive-cell {
-      padding: 32px 28px 28px;
-      border-right: 1px solid var(--rule);
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .archive-cell:last-child { border-right: none; }
-
-    .archive-cell-icon {
-      font-size: 1.5rem;
-      margin-bottom: 6px;
-    }
-
-    .archive-cell-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink3);
-    }
-
-    .archive-cell h3 {
-      font-size: 1.05rem;
-      font-weight: 500;
-    }
-
-    .archive-cell p {
-      font-size: 0.88rem;
-      color: var(--ink3);
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .archive-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      margin-top: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
     }
 
     /* ── CONTACT ── */
@@ -681,9 +630,6 @@
       .work-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
       .work-cell:last-child { border-bottom: none; }
 
-      .archive-grid { grid-template-columns: 1fr; }
-      .archive-cell { border-right: none; border-bottom: 1px solid var(--rule); }
-      .archive-cell:last-child { border-bottom: none; }
 
       .contact-row { grid-template-columns: 1fr; }
       .contact-cell { border-right: none; border-bottom: 1px solid var(--rule); }
@@ -717,7 +663,6 @@
         <li><a href="#about">about</a></li>
         <li><a href="#projects">projects</a></li>
         <li><a href="#work">work</a></li>
-        <li><a href="#archive">archive</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
       <a href="https://www.snowflake.com/ko/" target="_blank" class="nav-tag">@ Snowflake</a>
@@ -856,13 +801,16 @@
           <div class="project-num">01</div>
           <div class="project-body">
             <h3>Find Your Sole</h3>
-            <p>A personalized running shoe recommendation app. Answer a few questions about your foot type, running style, and budget — get matched with the right shoe, explained by AI. Started as a Streamlit web app, now available as an iOS app.</p>
+            <p>A personalized shoe recommendation service for running shoes and everyday comfort shoes. Answer a few questions about your feet, lifestyle, and budget — get matched with the right shoe, explained by AI. Now a responsive web app that works the same on desktop and mobile, with Korean and English throughout. Built mainly with Claude Code, with Codex as a second pair of eyes.</p>
             <div class="project-tags">
-              <span class="tag tech">Flutter</span>
+              <span class="tag tech">TypeScript</span>
+              <span class="tag tech">Vite</span>
               <span class="tag tech">Python</span>
               <span class="tag tech">FastAPI</span>
-              <span class="tag tech">Claude Haiku</span>
-              <span class="tag">iOS</span>
+              <span class="tag tech">PostgreSQL</span>
+              <span class="tag tech">Claude</span>
+              <span class="tag">Render</span>
+              <span class="tag">Web</span>
             </div>
           </div>
           <div class="project-link">
@@ -875,17 +823,19 @@
           <div class="project-num">02</div>
           <div class="project-body">
             <h3>Stockpulse Select</h3>
-            <p>An AI-powered stock dashboard iOS app. Claude searches the web in real time to analyze and display the latest stock information for Korean and US markets — with ETF search, streaming cards, and links to Naver Finance and Yahoo Finance.</p>
+            <p>A dashboard for discovering, comparing and keeping an eye on Korean and US stocks and ETFs. Claude proposes candidates and writes the notes, but every price and return is verified against Naver Finance data, so invented tickers never reach the screen. Compare up to four holdings on normalized performance, volatility and drawdown, with a what-if simulation drawn from three years of daily closes. Runs in the browser on desktop and mobile, in Korean and English — sign-in is invite-only while it&rsquo;s a prototype. Built the same way: mainly Claude Code, with some Codex.</p>
             <div class="project-tags">
               <span class="tag tech">Flutter</span>
+              <span class="tag tech">Python</span>
               <span class="tag tech">FastAPI</span>
-              <span class="tag tech">Claude Sonnet</span>
-              <span class="tag">iOS</span>
+              <span class="tag tech">PostgreSQL</span>
+              <span class="tag tech">Claude</span>
+              <span class="tag">Render</span>
+              <span class="tag">Web</span>
             </div>
           </div>
           <div class="project-link">
             <a class="primary" href="https://stockpulseselect.com" target="_blank">stockpulseselect.com →</a>
-            <a href="https://github.com/areumseo/stockpulse_select" target="_blank">GitHub →</a>
           </div>
         </div>
 
@@ -896,7 +846,7 @@
             <p>A personal AI agent that manages weekly schedules, tracks projects, and reports to Discord. Runs a Discord bot and task scheduler in a single asyncio loop — automating daily briefs, AI news digests, overdue alerts, and weekly reviews. Mention it in chat to add tasks or check your schedule in Korean or English.</p>
             <div class="project-tags">
               <span class="tag tech">Python</span>
-              <span class="tag tech">Claude Sonnet</span>
+              <span class="tag tech">Claude</span>
               <span class="tag tech">Notion API</span>
               <span class="tag">Discord</span>
               <span class="tag">Fly.io</span>
@@ -956,36 +906,11 @@
           <p>Academic work in linguistics, language education, and assessment — developed during graduate study in Tokyo.</p>
           <a href="publications.html" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);margin-top:12px;display:inline-block;">Browse archive →</a>
         </div>
-      </div>
-    </section>
-
-    <!-- ARCHIVE -->
-    <section id="archive" class="section fade-up">
-      <div class="section-header">
-        <div class="section-num">04 — archive</div>
-        <h2 class="section-title">Other work</h2>
-      </div>
-      <div class="archive-grid">
-        <div class="archive-cell">
-          <div class="archive-cell-icon">▶</div>
-          <div class="archive-cell-label">Media</div>
+        <div class="work-cell wide">
+          <div class="work-cell-label">Beyond</div>
           <h3>Media & Reporting</h3>
           <p>Tokyo correspondent work and selected video reporting. Language-first coverage of culture, society, and place.</p>
-          <a class="archive-link" href="media.html">Browse archive →</a>
-        </div>
-        <div class="archive-cell">
-          <div class="archive-cell-icon">◎</div>
-          <div class="archive-cell-label">Photography</div>
-          <h3>Photography</h3>
-          <p>Selected photography work developed through long-term practice. Quiet, deliberate, seasonal.</p>
-          <a class="archive-link" href="https://www.instagram.com/only.moments.remain/" target="_blank">View on Instagram →</a>
-        </div>
-        <div class="archive-cell">
-          <div class="archive-cell-icon">✦</div>
-          <div class="archive-cell-label">Creative</div>
-          <h3>Flower Arrangement</h3>
-          <p>Flower arrangement work developed through long-term practice. Quiet, deliberate, seasonal.</p>
-          <a class="archive-link" href="https://www.instagram.com/etre.la.fine.fleur/" target="_blank">View on Instagram →</a>
+          <a href="media.html" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);margin-top:12px;display:inline-block;">Browse archive →</a>
         </div>
       </div>
     </section>
@@ -993,7 +918,7 @@
     <!-- CONTACT -->
     <section id="contact" class="section fade-up">
       <div class="section-header">
-        <div class="section-num">05 — contact</div>
+        <div class="section-num">04 — contact</div>
         <h2 class="section-title">Get in touch</h2>
       </div>
       <div class="contact-row" style="grid-template-columns: 1fr 1fr;">
