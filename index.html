@@ -457,6 +457,31 @@
       max-width: 520px;
     }
 
+    .project-notes {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+      max-width: 520px;
+    }
+
+    .project-note {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 12px;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--ink2);
+    }
+
+    .project-note-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 3px;
+    }
+
     .project-tags {
       display: flex;
       flex-wrap: wrap;
@@ -616,6 +641,7 @@
       .about-grid { grid-template-columns: 1fr; }
 
       .project-row { grid-template-columns: 40px 1fr; }
+      .project-note { grid-template-columns: 1fr; gap: 2px; }
       .project-link {
         grid-column: 2;
         flex-direction: row;
@@ -675,7 +701,7 @@
       <div class="hero-content">
         <div class="hero-eyebrow">
           <div class="dot"></div>
-          <span>Project Manager · Localization Specialist · Writer · Seoul</span>
+          <span>Project Manager · Localization Specialist · Builder · Writer · Seoul</span>
         </div>
         <h1>Language, <em>systems,</em><br>and the tools<br>that connect them.</h1>
       </div>
@@ -711,7 +737,7 @@
       <div class="hero-sub-item">
         <div class="hero-sub-label">What I do</div>
         <div class="hero-sub-text">
-          I sit between language and systems — running localization and language operations, shaping multilingual workflows, and building the small tools that hold them together.
+          I sit between language and systems — running localization and language operations, shaping multilingual workflows, and building the tools and products that hold them together.
         </div>
       </div>
       <div class="hero-sub-item">
@@ -736,7 +762,7 @@
         <div><span class="t-prompt">→ </span><span class="t-cmd">whoami</span></div>
         <div><span class="t-out">areum seo</span> <span class="t-muted"># localization pm, builder, writer</span></div>
         <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cmd">ls ./skills</span></div>
-        <div><span class="t-out">korean</span> <span class="t-out">japanese</span> <span class="t-out">english</span> <span class="t-out">python</span> <span class="t-out">streamlit</span> <span class="t-out">sql</span> <span class="t-out">localization-qa</span> <span class="t-out">vibe-coding</span></div>
+        <div><span class="t-out">korean</span> <span class="t-out">japanese</span> <span class="t-out">english</span> <span class="t-out">python</span> <span class="t-out">fastapi</span> <span class="t-out">sql</span> <span class="t-out">localization-qa</span> <span class="t-out">claude-code</span></div>
         <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cmd">cat ./now.txt</span></div>
         <div><span class="t-accent">@ snowflake</span> <span class="t-muted">+</span> <span class="t-accent">localization ops</span> <span class="t-muted">+</span> <span class="t-accent">demoing cowork</span></div>
         <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cursor"></span></div>
@@ -761,7 +787,7 @@
             Since then my work has spanned localization QA, translation, project management, and language operations, across linguistics, gaming, technical documentation, marketing, and entertainment — including a stretch at Amazon Japan, where I received a Customer Obsession Award. Most recently I stood in the experience zone at Snowflake World Tour Seoul demoing CoWork to visitors: same instinct as the classroom, shorter attention span.
           </p>
           <p>
-            Lately I've been building: Python, SQL, Streamlit, Snowflake, GitHub, and a handful of iOS apps. I hold a SnowPro Associate certification and keep picking up credentials in data engineering and generative AI along the way. I don't call myself a developer yet — but I ship things, and I keep going.
+            I build. Two web apps are live on domains of their own, backed by FastAPI and PostgreSQL on Render, alongside a Discord agent and a game — made mostly with Claude Code and Codex, in Python, SQL, and Flutter. I hold a SnowPro Associate certification and keep picking up credentials in data engineering and generative AI. Localization taught me to treat language as a system; building is how I get to change one.
           </p>
         </div>
         <div class="about-sidebar">
@@ -779,7 +805,7 @@
           </div>
           <div class="sidebar-row">
             <div class="sidebar-key">stack</div>
-            <div class="sidebar-val">Python · SQL · Streamlit · Snowflake · GitHub</div>
+            <div class="sidebar-val">Python · SQL · FastAPI · Flutter · Streamlit · Snowflake · GitHub</div>
           </div>
           <div class="sidebar-row">
             <div class="sidebar-key">now</div>
@@ -802,6 +828,10 @@
           <div class="project-body">
             <h3>Find Your Sole</h3>
             <p>A personalized shoe recommendation service for running shoes and everyday comfort shoes. Answer a few questions about your feet, lifestyle, and budget — get matched with the right shoe, explained by AI. Now a responsive web app that works the same on desktop and mobile, with Korean and English throughout. Built mainly with Claude Code, with Codex as a second pair of eyes.</p>
+            <div class="project-notes">
+              <div class="project-note"><span class="project-note-label">Problem</span><span>Choosing a shoe means weighing arch, pronation, terrain, mileage and budget all at once.</span></div>
+              <div class="project-note"><span class="project-note-label">Iteration</span><span>Started in May as a Streamlit prototype, then a FastAPI backend and a Flutter app, and now this web app. In October it widened from running shoes to everyday comfort shoes. An in-app feedback inbox, a note plus an optional screenshot, collects what people actually run into.</span></div>
+            </div>
             <div class="project-tags">
               <span class="tag tech">TypeScript</span>
               <span class="tag tech">Vite</span>
@@ -824,6 +854,10 @@
           <div class="project-body">
             <h3>Stockpulse Select</h3>
             <p>A dashboard for discovering, comparing and keeping an eye on Korean and US stocks and ETFs. Claude proposes candidates and writes the notes, but every price and return is verified against Naver Finance data, so invented tickers never reach the screen. Compare up to four holdings on normalized performance, volatility and drawdown, with a what-if simulation drawn from three years of daily closes. Runs in the browser on desktop and mobile, in Korean and English — sign-in is invite-only while it&rsquo;s a prototype. Built the same way: mainly Claude Code, with some Codex.</p>
+            <div class="project-notes">
+              <div class="project-note"><span class="project-note-label">Problem</span><span>An AI that finds stocks can just as easily invent a ticker or a return.</span></div>
+              <div class="project-note"><span class="project-note-label">Iteration</span><span>Five tagged releases between Sept 28 and Oct 5 (v0.1.2 to v0.1.7). The latest ones tighten trust: AI notes with figures or hype are held back, new ETF listings need a confirmed listing date, and a fund without enough history shows &ldquo;&mdash;&rdquo; rather than a made-up return.</span></div>
+            </div>
             <div class="project-tags">
               <span class="tag tech">Flutter</span>
               <span class="tag tech">Python</span>
@@ -860,6 +894,9 @@
           <div class="project-body">
             <h3>Moon Rabbit&rsquo;s Way Home</h3>
             <p>A Chuseok runner game in the spirit of the Chrome dino. Help the moon rabbit get home for the holiday by jumping over relatives&rsquo; nagging &mdash; &ldquo;Married yet?&rdquo;, &ldquo;How much do you make?&rdquo; &mdash; and grabbing songpyeon along the way. Built in a day with Claude Code as a single HTML file, with Korean and English versions localized rather than translated so every nag lands in both languages, plus shareable score cards.</p>
+            <div class="project-notes">
+              <div class="project-note"><span class="project-note-label">Iteration</span><span>Built in a day, then fixed what real phones exposed: with no viewport tag they showed the desktop layout, and the game-over panel didn&rsquo;t fit a 120px-tall canvas, so it now opens below the canvas on small screens.</span></div>
+            </div>
             <div class="project-tags">
               <span class="tag tech">Canvas 2D</span>
               <span class="tag tech">JavaScript</span>
