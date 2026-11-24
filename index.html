@@ -858,11 +858,11 @@
           <div class="project-num">02</div>
           <div class="project-body">
             <h3>Stockpulse Select</h3>
-            <p>A dashboard for discovering, comparing and keeping an eye on Korean and US stocks and ETFs. Claude proposes candidates and writes the notes; prices and returns are grounded in Naver Finance data. Compare up to four holdings on normalized performance, volatility and drawdown, with a what-if simulation drawn from three years of daily closes. Runs in the browser on desktop and mobile, in Korean and English — sign-in is invite-only while it&rsquo;s a prototype. Built the same way: mainly Claude Code, with some Codex.</p>
+            <p>A dashboard for discovering, comparing and keeping an eye on Korean and US stocks and ETFs. Claude proposes candidates and writes short notes, but prices, returns and market caps come from Naver Finance data, and candidates whose tickers can&rsquo;t be resolved are dropped. Compare up to four stocks or ETFs on normalized performance, volatility and drawdown, with an AI reading of the trade-off and a what-if simulation drawn from three years of daily closes. A home screen summarizes the market: indices, FX and rates, and an AI brief written twice a day. Runs in the browser on desktop and mobile, in Korean and English. Sign-in is invite-only while it&rsquo;s a prototype. Built the same way: mainly Claude Code, with some Codex.</p>
             <div class="project-notes">
               <div class="project-note"><span class="project-note-label">Problem</span><span>An AI that finds stocks can just as easily invent a ticker or a return.</span></div>
-              <div class="project-note"><span class="project-note-label">Evaluation & guardrails</span><span>AI-generated notes containing figures or hype language are held back before display. Funds without sufficient price history show &ldquo;&mdash;&rdquo; rather than a fabricated return. New ETF listings require a confirmed listing date before appearing in results.</span></div>
-              <div class="project-note"><span class="project-note-label">Iteration</span><span>Five tagged releases between Sept 28 and Oct 5 (v0.1.2 to v0.1.7). New ETF listings require a confirmed listing date before appearing in results.</span></div>
+              <div class="project-note"><span class="project-note-label">Evaluation & guardrails</span><span>AI notes containing figures or hype language are held back. New ETF listings require a confirmed listing date. A fund without enough history shows &ldquo;&mdash;&rdquo; instead of a return over a shorter window.</span></div>
+              <div class="project-note"><span class="project-note-label">Iteration</span><span>Six tagged releases between Sept 28 and Oct 5 (v0.1.2 to v0.1.7).</span></div>
             </div>
             <div class="project-tags">
               <span class="tag tech">Flutter</span>
