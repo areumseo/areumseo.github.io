@@ -112,19 +112,66 @@
 
     .hero-portrait {
       flex-shrink: 0;
-      width: clamp(160px, 20vw, 260px);
+      width: clamp(160px, 20vw, 234px);
+      display: flex;
+      align-items: flex-start;
     }
 
-    .hero-portrait img {
-      width: 100%;
+    .hero-portrait > img {
+      flex: 1.25 1 0;
+      min-width: 0;
       border-radius: 16px;
       display: block;
       mix-blend-mode: multiply;
     }
 
+    /* CoWork demo clip */
+    .hero-demo {
+      flex: 1 1 0;
+      min-width: 0;
+      border: 1px solid var(--rule);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+
+    .hero-demo video {
+      width: 100%;
+      display: block;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+      background: var(--bg2);
+    }
+
+    .hero-demo video img {
+      width: 100%;
+      display: block;
+    }
+
+    .hero-demo-caption {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border-top: 1px solid var(--rule);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.01em;
+      line-height: 1.4;
+      color: var(--ink3);
+    }
+
+    .hero-demo-caption .live {
+      flex-shrink: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
     @media (max-width: 640px) {
       .hero-inner { flex-direction: column-reverse; align-items: center; }
-      .hero-portrait { width: 140px; }
+      .hero-portrait { width: 180px; }
     }
 
     .hero-eyebrow {
@@ -410,6 +457,31 @@
       max-width: 520px;
     }
 
+    .project-notes {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+      max-width: 520px;
+    }
+
+    .project-note {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 12px;
+      font-size: 0.84rem;
+      line-height: 1.55;
+      color: var(--ink2);
+    }
+
+    .project-note-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.64rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 3px;
+    }
+
     .project-tags {
       display: flex;
       flex-wrap: wrap;
@@ -431,6 +503,10 @@
     .tag.tech { color: var(--accent); border-color: rgba(201,75,42,0.3); background: rgba(201,75,42,0.05); }
 
     .project-link {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
       font-family: 'DM Mono', monospace;
       font-size: 0.72rem;
       color: var(--ink3);
@@ -438,6 +514,8 @@
       padding-top: 4px;
       transition: color 0.15s;
     }
+
+    .project-link a.primary { color: var(--accent); }
 
     .project-row:hover .project-link { color: var(--accent); }
 
@@ -458,7 +536,12 @@
     }
 
     .work-cell:nth-child(even) { border-right: none; }
-    .work-cell:nth-last-child(-n+2) { border-bottom: none; }
+    .work-cell:last-child { border-bottom: none; }
+
+    .work-cell.wide {
+      grid-column: 1 / -1;
+      border-right: none;
+    }
 
     .work-cell-label {
       font-family: 'DM Mono', monospace;
@@ -479,62 +562,6 @@
       font-size: 0.88rem;
       color: var(--ink3);
       line-height: 1.6;
-    }
-
-    /* ── ARCHIVE ── */
-    .archive-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      overflow: hidden;
-    }
-
-    .archive-cell {
-      padding: 32px 28px 28px;
-      border-right: 1px solid var(--rule);
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .archive-cell:last-child { border-right: none; }
-
-    .archive-cell-icon {
-      font-size: 1.5rem;
-      margin-bottom: 6px;
-    }
-
-    .archive-cell-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink3);
-    }
-
-    .archive-cell h3 {
-      font-size: 1.05rem;
-      font-weight: 500;
-    }
-
-    .archive-cell p {
-      font-size: 0.88rem;
-      color: var(--ink3);
-      line-height: 1.6;
-      flex: 1;
-    }
-
-    .archive-link {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--accent);
-      margin-top: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
     }
 
     /* ── CONTACT ── */
@@ -614,16 +641,21 @@
       .about-grid { grid-template-columns: 1fr; }
 
       .project-row { grid-template-columns: 40px 1fr; }
-      .project-link { display: none; }
+      .project-note { grid-template-columns: 1fr; gap: 2px; }
+      .project-link {
+        grid-column: 2;
+        flex-direction: row;
+        align-items: center;
+        gap: 18px;
+        padding-top: 0;
+        margin-top: 14px;
+      }
 
       .work-grid { grid-template-columns: 1fr; }
       .work-cell { border-right: none; }
       .work-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
       .work-cell:last-child { border-bottom: none; }
 
-      .archive-grid { grid-template-columns: 1fr; }
-      .archive-cell { border-right: none; border-bottom: 1px solid var(--rule); }
-      .archive-cell:last-child { border-bottom: none; }
 
       .contact-row { grid-template-columns: 1fr; }
       .contact-cell { border-right: none; border-bottom: 1px solid var(--rule); }
@@ -657,7 +689,6 @@
         <li><a href="#about">about</a></li>
         <li><a href="#projects">projects</a></li>
         <li><a href="#work">work</a></li>
-        <li><a href="#archive">archive</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
       <a href="https://www.snowflake.com/ko/" target="_blank" class="nav-tag">@ Snowflake</a>
@@ -670,25 +701,49 @@
       <div class="hero-content">
         <div class="hero-eyebrow">
           <div class="dot"></div>
-          <span>Applied AI & Data Solutions · Enterprise Automation · Seoul</span>
+          <span>Applied AI & Data Solutions · Localization PM · Builder · Seoul</span>
         </div>
         <h1>Language, <em>systems,</em><br>and the tools<br>that connect them.</h1>
       </div>
       <div class="hero-portrait">
-        <img src="profile.png" alt="Areum Seo illustration" />
+        <figure class="hero-demo">
+          <video autoplay loop muted playsinline preload="metadata"
+                 poster="cowork-demo-poster.jpg"
+                 aria-label="Areum Seo demoing Snowflake CoWork at Snowflake World Tour Seoul">
+            <source src="cowork-demo.webm" type="video/webm" />
+            <source src="cowork-demo.mp4" type="video/mp4" />
+            <img src="cowork-demo-poster.jpg" alt="Areum Seo demoing Snowflake CoWork at Snowflake World Tour Seoul" />
+          </video>
+          <figcaption class="hero-demo-caption">
+            <span class="live"></span>
+            <span>Demoing Snowflake CoWork<br />at Snowflake World Tour Seoul</span>
+          </figcaption>
+        </figure>
       </div>
+      <script>
+        // Honor reduced-motion: freeze the demo loop on its poster frame.
+        (function () {
+          var q = window.matchMedia('(prefers-reduced-motion: reduce)');
+          var v = document.querySelector('.hero-demo video');
+          if (!v) return;
+          function sync() { if (q.matches) { v.removeAttribute('loop'); v.pause(); } }
+          sync();
+          q.addEventListener('change', sync);
+          v.addEventListener('play', sync);
+        })();
+      </script>
     </div>
     <div class="hero-sub">
       <div class="hero-sub-item">
         <div class="hero-sub-label">What I do</div>
         <div class="hero-sub-text">
-          I build enterprise AI systems end-to-end — LLM evaluation pipelines, RAG services, agentic workflows, and governed data analytics. Grounded in applied linguistics and multilingual operations, now focused on applied AI and automation.
+          I sit between language and systems — building enterprise AI, running localization operations, and shipping the tools that connect them. LLM evaluation, RAG, agentic workflows, and governed analytics, grounded in applied linguistics.
         </div>
       </div>
       <div class="hero-sub-item">
         <div class="hero-sub-label">Currently</div>
         <div class="hero-sub-text">
-          At Snowflake, building production AI systems across LLM evaluation, RAG, data intelligence, and multimodal automation — from architecture to deployment.
+          Localization Project Manager at Snowflake &mdash; building AI-driven content operations across LLM evaluation, RAG, and data intelligence. Most recently on the floor demoing CoWork at Snowflake World Tour Seoul.
         </div>
       </div>
     </div>
@@ -707,9 +762,9 @@
         <div><span class="t-prompt">→ </span><span class="t-cmd">whoami</span></div>
         <div><span class="t-out">areum seo</span> <span class="t-muted"># applied ai & data solutions, enterprise automation</span></div>
         <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cmd">ls ./skills</span></div>
-        <div><span class="t-out">korean</span> <span class="t-out">japanese</span> <span class="t-out">english</span> <span class="t-out">python</span> <span class="t-out">rag</span> <span class="t-out">llm-eval</span> <span class="t-out">snowflake</span> <span class="t-out">fastapi</span> <span class="t-out">sql</span> <span class="t-out">agent-orchestration</span></div>
+        <div><span class="t-out">korean</span> <span class="t-out">japanese</span> <span class="t-out">english</span> <span class="t-out">python</span> <span class="t-out">rag</span> <span class="t-out">llm-eval</span> <span class="t-out">snowflake</span> <span class="t-out">fastapi</span> <span class="t-out">sql</span> <span class="t-out">agent-orchestration</span> <span class="t-out">claude-code</span></div>
         <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cmd">cat ./now.txt</span></div>
-        <div><span class="t-accent">building AI systems</span> <span class="t-muted">+</span> <span class="t-accent">@ snowflake</span> <span class="t-muted">+</span> <span class="t-accent">shipping to github</span></div>
+        <div><span class="t-accent">@ snowflake</span> <span class="t-muted">+</span> <span class="t-accent">building AI systems</span> <span class="t-muted">+</span> <span class="t-accent">shipping to github</span></div>
         <div style="margin-top: 6px;"><span class="t-prompt">→ </span><span class="t-cursor"></span></div>
       </div>
     </div>
@@ -726,13 +781,13 @@
       <div class="about-grid">
         <div class="about-text">
           <p>
-            I'm Areum Seo — a technology professional building enterprise AI and data solutions end-to-end. I came to Tokyo on a MEXT scholarship, completed a master's in applied linguistics at Tokyo University of Foreign Studies, and moved through language operations into applied AI.
+            I'm Areum Seo — a localization professional, linguist, and builder working across Korean, Japanese, and English. I came to Tokyo on a MEXT scholarship, earned a master's degree in applied linguistics at Tokyo University of Foreign Studies, and taught Japanese at Waseda and Korean at JCFL before moving into industry. Teaching is where I learned to explain a system to someone who has never seen it — which turns out to be most of what I still do.
           </p>
           <p>
-            At Snowflake, I build production systems across LLM evaluation, RAG, agentic workflows, and data intelligence — from architecture through deployment. Past experience includes Alexa AI data operations at Amazon Japan, where I received a Customer Obsession Award, and three years of multilingual operations at Kakao Piccoma.
+            Since then, my work has spanned localization QA, translation, project management, and language operations — including Alexa AI data operations at Amazon Japan, where I received a Customer Obsession Award, and three years of multilingual ops at Kakao Piccoma. At Snowflake, I build production AI systems: LLM evaluation pipelines, RAG services, agentic workflows, and governed data intelligence. Most recently, I demonstrated CoWork to visitors at the Snowflake World Tour Seoul experience zone: same instinct as the classroom, shorter attention span.
           </p>
           <p>
-            I hold a SnowPro Associate certification and credentials in data engineering and DevOps on AWS. Outside of work I build independent AI apps — mobile and web — shipping to GitHub. The applied linguistics background still runs underneath it all.
+            I build. Web apps, iOS apps, and a Discord agent — using Python, FastAPI, Flutter, and Claude Code. I hold a SnowPro Associate certification and credentials in data engineering and DevOps on AWS. Localization taught me to treat language as a system; building is how I get to change one.
           </p>
         </div>
         <div class="about-sidebar">
@@ -750,7 +805,7 @@
           </div>
           <div class="sidebar-row">
             <div class="sidebar-key">stack</div>
-            <div class="sidebar-val">Python · FastAPI · Snowflake · SQL · RAG · LLM eval · React/Next.js · Flutter</div>
+            <div class="sidebar-val">Python · FastAPI · Snowflake · SQL · RAG · LLM eval · Flutter · React/Next.js</div>
           </div>
           <div class="sidebar-row">
             <div class="sidebar-key">now</div>
@@ -772,31 +827,50 @@
           <div class="project-num">01</div>
           <div class="project-body">
             <h3>Find Your Sole</h3>
-            <p>A personalized running shoe recommendation app. Answer a few questions about your foot type, running style, and budget — get matched with the right shoe, explained by AI. Started as a Streamlit web app, now available as an iOS app.</p>
+            <p>A personalized shoe recommendation service for running shoes and everyday comfort shoes. Answer a few questions about your feet, lifestyle, and budget — get matched with the right shoe, explained by AI. Now a responsive web app that works the same on desktop and mobile, with Korean and English throughout. Built mainly with Claude Code, with Codex as a second pair of eyes.</p>
+            <div class="project-notes">
+              <div class="project-note"><span class="project-note-label">Problem</span><span>Choosing a shoe means weighing arch, pronation, terrain, mileage and budget all at once.</span></div>
+              <div class="project-note"><span class="project-note-label">Iteration</span><span>Started in May as a Streamlit prototype, then a FastAPI backend and a Flutter app, and now this web app. In October it widened from running shoes to everyday comfort shoes. An in-app feedback inbox, a note plus an optional screenshot, collects what people actually run into.</span></div>
+            </div>
             <div class="project-tags">
-              <span class="tag tech">Flutter</span>
+              <span class="tag tech">TypeScript</span>
+              <span class="tag tech">Vite</span>
               <span class="tag tech">Python</span>
               <span class="tag tech">FastAPI</span>
-              <span class="tag tech">Claude Haiku</span>
-              <span class="tag">iOS</span>
+              <span class="tag tech">PostgreSQL</span>
+              <span class="tag tech">Claude</span>
+              <span class="tag">Render</span>
+              <span class="tag">Web</span>
             </div>
           </div>
-          <div class="project-link"><a href="https://github.com/areumseo/find-your-sole" target="_blank">GitHub →</a></div>
+          <div class="project-link">
+            <a class="primary" href="https://findyoursole.app" target="_blank">findyoursole.app →</a>
+            <a href="https://github.com/areumseo/find-your-sole" target="_blank">GitHub →</a>
+          </div>
         </div>
 
         <div class="project-row">
           <div class="project-num">02</div>
           <div class="project-body">
             <h3>Stockpulse Select</h3>
-            <p>An AI-powered stock dashboard iOS app. Claude searches the web in real time to analyze and display the latest stock information for Korean and US markets — with ETF search, streaming cards, and links to Naver Finance and Yahoo Finance.</p>
+            <p>A dashboard for discovering, comparing and keeping an eye on Korean and US stocks and ETFs. Claude proposes candidates and writes the notes, but every price and return is verified against Naver Finance data, so invented tickers never reach the screen. Compare up to four holdings on normalized performance, volatility and drawdown, with a what-if simulation drawn from three years of daily closes. Runs in the browser on desktop and mobile, in Korean and English — sign-in is invite-only while it&rsquo;s a prototype. Built the same way: mainly Claude Code, with some Codex.</p>
+            <div class="project-notes">
+              <div class="project-note"><span class="project-note-label">Problem</span><span>An AI that finds stocks can just as easily invent a ticker or a return.</span></div>
+              <div class="project-note"><span class="project-note-label">Iteration</span><span>Five tagged releases between Sept 28 and Oct 5 (v0.1.2 to v0.1.7). The latest ones tighten trust: AI notes with figures or hype are held back, new ETF listings need a confirmed listing date, and a fund without enough history shows &ldquo;&mdash;&rdquo; rather than a made-up return.</span></div>
+            </div>
             <div class="project-tags">
               <span class="tag tech">Flutter</span>
+              <span class="tag tech">Python</span>
               <span class="tag tech">FastAPI</span>
-              <span class="tag tech">Claude Sonnet</span>
-              <span class="tag">iOS</span>
+              <span class="tag tech">PostgreSQL</span>
+              <span class="tag tech">Claude</span>
+              <span class="tag">Render</span>
+              <span class="tag">Web</span>
             </div>
           </div>
-          <div class="project-link"><a href="https://github.com/areumseo/stockpulse_select" target="_blank">GitHub →</a></div>
+          <div class="project-link">
+            <a class="primary" href="https://stockpulseselect.com" target="_blank">stockpulseselect.com →</a>
+          </div>
         </div>
 
         <div class="project-row">
@@ -806,13 +880,35 @@
             <p>A personal AI agent that manages weekly schedules, tracks projects, and reports to Discord. Runs a Discord bot and task scheduler in a single asyncio loop — automating daily briefs, AI news digests, overdue alerts, and weekly reviews. Mention it in chat to add tasks or check your schedule in Korean or English.</p>
             <div class="project-tags">
               <span class="tag tech">Python</span>
-              <span class="tag tech">Claude Sonnet</span>
+              <span class="tag tech">Claude</span>
               <span class="tag tech">Notion API</span>
               <span class="tag">Discord</span>
               <span class="tag">Fly.io</span>
             </div>
           </div>
           <div class="project-link"><a href="https://github.com/areumseo/alliegent" target="_blank">GitHub →</a></div>
+        </div>
+
+        <div class="project-row">
+          <div class="project-num">04</div>
+          <div class="project-body">
+            <h3>Moon Rabbit&rsquo;s Way Home</h3>
+            <p>A Chuseok runner game in the spirit of the Chrome dino. Help the moon rabbit get home for the holiday by jumping over relatives&rsquo; nagging &mdash; &ldquo;Married yet?&rdquo;, &ldquo;How much do you make?&rdquo; &mdash; and grabbing songpyeon along the way. Built in a day with Claude Code as a single HTML file, with Korean and English versions localized rather than translated so every nag lands in both languages, plus shareable score cards.</p>
+            <div class="project-notes">
+              <div class="project-note"><span class="project-note-label">Iteration</span><span>Built in a day, then fixed what real phones exposed: with no viewport tag they showed the desktop layout, and the game-over panel didn&rsquo;t fit a 120px-tall canvas, so it now opens below the canvas on small screens.</span></div>
+            </div>
+            <div class="project-tags">
+              <span class="tag tech">Canvas 2D</span>
+              <span class="tag tech">JavaScript</span>
+              <span class="tag tech">Claude Code</span>
+              <span class="tag">KO / EN</span>
+              <span class="tag">GitHub Pages</span>
+            </div>
+          </div>
+          <div class="project-link">
+            <a class="primary" href="https://areumseo.com/moon-rabbit-run/" target="_blank">Play →</a>
+            <a href="https://github.com/areumseo/moon-rabbit-run" target="_blank">GitHub →</a>
+          </div>
         </div>
 
       </div>
@@ -847,36 +943,11 @@
           <p>Academic work in linguistics, language education, and assessment — developed during graduate study in Tokyo.</p>
           <a href="publications.html" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);margin-top:12px;display:inline-block;">Browse archive →</a>
         </div>
-      </div>
-    </section>
-
-    <!-- ARCHIVE -->
-    <section id="archive" class="section fade-up">
-      <div class="section-header">
-        <div class="section-num">04 — archive</div>
-        <h2 class="section-title">Other work</h2>
-      </div>
-      <div class="archive-grid">
-        <div class="archive-cell">
-          <div class="archive-cell-icon">▶</div>
-          <div class="archive-cell-label">Media</div>
+        <div class="work-cell wide">
+          <div class="work-cell-label">Beyond</div>
           <h3>Media & Reporting</h3>
           <p>Tokyo correspondent work and selected video reporting. Language-first coverage of culture, society, and place.</p>
-          <a class="archive-link" href="media.html">Browse archive →</a>
-        </div>
-        <div class="archive-cell">
-          <div class="archive-cell-icon">◎</div>
-          <div class="archive-cell-label">Photography</div>
-          <h3>Photography</h3>
-          <p>Selected photography work developed through long-term practice. Quiet, deliberate, seasonal.</p>
-          <a class="archive-link" href="https://www.instagram.com/only.moments.remain/" target="_blank">View on Instagram →</a>
-        </div>
-        <div class="archive-cell">
-          <div class="archive-cell-icon">✦</div>
-          <div class="archive-cell-label">Creative</div>
-          <h3>Flower Arrangement</h3>
-          <p>Flower arrangement work developed through long-term practice. Quiet, deliberate, seasonal.</p>
-          <a class="archive-link" href="https://www.instagram.com/etre.la.fine.fleur/" target="_blank">View on Instagram →</a>
+          <a href="media.html" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);margin-top:12px;display:inline-block;">Browse archive →</a>
         </div>
       </div>
     </section>
@@ -884,7 +955,7 @@
     <!-- CONTACT -->
     <section id="contact" class="section fade-up">
       <div class="section-header">
-        <div class="section-num">05 — contact</div>
+        <div class="section-num">04 — contact</div>
         <h2 class="section-title">Get in touch</h2>
       </div>
       <div class="contact-row" style="grid-template-columns: 1fr 1fr;">
