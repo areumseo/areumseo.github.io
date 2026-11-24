@@ -522,7 +522,7 @@
     /* ── WORK ── */
     .work-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 0;
       border: 1px solid var(--rule);
       border-radius: 6px;
@@ -535,7 +535,10 @@
       border-bottom: 1px solid var(--rule);
     }
 
-    .work-cell:nth-child(even) { border-right: none; }
+    .work-cell:nth-child(3n) { border-right: none; }
+    .work-cell:nth-last-child(-n+3):nth-child(3n+1),
+    .work-cell:nth-last-child(-n+3):nth-child(3n+2),
+    .work-cell:nth-last-child(-n+3):nth-child(3n) { border-bottom: none; }
     .work-cell:last-child { border-bottom: none; }
 
     .work-cell.wide {
@@ -653,7 +656,9 @@
 
       .work-grid { grid-template-columns: 1fr; }
       .work-cell { border-right: none; }
-      .work-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+      .work-cell:nth-last-child(-n+3):nth-child(3n+1),
+      .work-cell:nth-last-child(-n+3):nth-child(3n+2),
+      .work-cell:nth-last-child(-n+3):nth-child(3n) { border-bottom: 1px solid var(--rule); }
       .work-cell:last-child { border-bottom: none; }
 
 
@@ -933,9 +938,14 @@
         </div>
         <div class="work-cell">
           <div class="work-cell-label">Foundation</div>
-          <h3>Translation & Interpretation</h3>
+          <h3>Translation, Interpretation & Achievement</h3>
           <p>Direct language work across Korean, Japanese, and English — translation, interpretation, and localization QA across linguistics, gaming, technical docs, marketing, and entertainment.</p>
           <a href="work-experience.html" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);margin-top:12px;display:inline-block;">Browse archive →</a>
+        </div>
+        <div class="work-cell">
+          <div class="work-cell-label">Operations</div>
+          <h3>Localization Project Management</h3>
+          <p>End-to-end localization PM across gaming, tech, marketing, and entertainment — vendor management, quality processes, and cross-functional delivery.</p>
         </div>
         <div class="work-cell">
           <div class="work-cell-label">Background</div>
@@ -943,7 +953,7 @@
           <p>Academic work in linguistics, language education, and assessment — developed during graduate study in Tokyo.</p>
           <a href="publications.html" style="font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent);margin-top:12px;display:inline-block;">Browse archive →</a>
         </div>
-        <div class="work-cell wide">
+        <div class="work-cell">
           <div class="work-cell-label">Beyond</div>
           <h3>Media & Reporting</h3>
           <p>Tokyo correspondent work and selected video reporting. Language-first coverage of culture, society, and place.</p>
