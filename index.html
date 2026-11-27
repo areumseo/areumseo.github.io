@@ -520,6 +520,65 @@
     .project-row:hover .project-link { color: var(--accent); }
 
     /* ── WORK ── */
+    .featured {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 32px 32px 28px;
+      margin-bottom: 20px;
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      background: var(--bg2);
+    }
+
+    .featured-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .featured-source {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--ink3);
+    }
+
+    .featured h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.4rem, 3vw, 1.75rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+    }
+
+    .featured-ko {
+      font-size: 1rem;
+      color: var(--ink);
+      word-break: keep-all;
+    }
+
+    .featured p {
+      font-size: 0.9rem;
+      color: var(--ink2);
+      line-height: 1.65;
+      max-width: 640px;
+    }
+
+    .featured .project-tags { margin-top: 4px; }
+
+    .featured-link {
+      align-self: flex-start;
+      margin-top: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--accent);
+    }
+
+    .featured-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
     .work-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -926,6 +985,20 @@
         <div class="section-num">03 — work</div>
         <h2 class="section-title">Experience</h2>
       </div>
+      <article class="featured">
+        <div class="featured-label">Featured Technical Publication</div>
+        <div class="featured-source">Snowflake Korea Tech Blog · Technical Case Study</div>
+        <h3>From Fragmented Data to Connected Workflows</h3>
+        <div class="featured-ko" lang="ko">데이터는 모였는데 업무는 왜 파편화되어 있을까?</div>
+        <p>A practical case study of designing and deploying workflow-centric enterprise applications using Snowflake App Runtime, connecting fragmented operational data with content performance and business decision-making.</p>
+        <div class="project-tags">
+          <span class="tag tech">Data Intelligence</span>
+          <span class="tag tech">Solution Architecture</span>
+          <span class="tag tech">Snowflake App Runtime</span>
+          <span class="tag tech">Enterprise Applications</span>
+        </div>
+        <a class="featured-link" href="https://snowflake-kr.medium.com/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%8A%94-%EB%AA%A8%EC%98%80%EB%8A%94%EB%8D%B0-%EC%97%85%EB%AC%B4%EB%8A%94-%EC%99%9C-%ED%8C%8C%ED%8E%B8%ED%99%94%EB%90%98%EC%96%B4-%EC%9E%88%EC%9D%84%EA%B9%8C-8be6d6f34956" target="_blank" rel="noopener">Read article (Korean) →</a>
+      </article>
       <div class="work-grid">
         <div class="work-cell">
           <div class="work-cell-label">Core</div>
