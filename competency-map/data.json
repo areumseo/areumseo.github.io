@@ -598,7 +598,7 @@
       "title": "Content Search Assistant",
       "kind": "project",
       "status": "In production",
-      "summary": "A multilingual Slack assistant for finding blog posts, customer stories and digital assets.",
+      "summary": "A multilingual Slack assistant for finding localized content.",
       "problem": "Colleagues in different languages struggled to find the right piece of content quickly.",
       "contribution": "Built and operated it end to end — search data, agent, Slack app and deployment — and improved it from query logs.",
       "implementation": [
