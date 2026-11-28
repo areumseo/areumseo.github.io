@@ -1,0 +1,2156 @@
+{
+  "meta": {
+    "updatedAt": "2026-11-28",
+    "note": "Implementation experience describes what these systems do. It does not by itself establish independent coding proficiency. Figures and outcomes are self-reported unless stated otherwise."
+  },
+  "areas": [
+    {
+      "id": "ai",
+      "name": "Applied AI & Evaluation",
+      "summary": "Agents, retrieval, natural-language analytics and model fallback — and designing how AI behaviour is checked."
+    },
+    {
+      "id": "data",
+      "name": "Data & Analytics Engineering",
+      "summary": "Ingestion from external APIs, counting rules as code, shared metric definitions and point-in-time snapshots."
+    },
+    {
+      "id": "app",
+      "name": "Application Development",
+      "summary": "Web apps, a Slack app, asynchronous API integrations, review tooling and media processing."
+    },
+    {
+      "id": "ops",
+      "name": "Systems & Operations",
+      "summary": "Container deployment, releases and tests, access control, usage logging and scheduled reporting."
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "agent-orch",
+      "name": "Agent Orchestration",
+      "areaId": "ai"
+    },
+    {
+      "id": "search-eng",
+      "name": "Search Engineering",
+      "areaId": "ai"
+    },
+    {
+      "id": "nl2sql",
+      "name": "Natural-language Analytics (NL2SQL)",
+      "areaId": "ai"
+    },
+    {
+      "id": "agent-skills",
+      "name": "Agent Skill Development",
+      "areaId": "ai"
+    },
+    {
+      "id": "model-fallback",
+      "name": "Model Fallback",
+      "areaId": "ai"
+    },
+    {
+      "id": "multimodal",
+      "name": "Multimodal AI Pipelines",
+      "areaId": "ai"
+    },
+    {
+      "id": "eval-design",
+      "name": "Evaluation Design",
+      "areaId": "ai"
+    },
+    {
+      "id": "guardrails",
+      "name": "Guardrails & Human Hand-off",
+      "areaId": "ai"
+    },
+    {
+      "id": "multilingual",
+      "name": "Multilingual Processing",
+      "areaId": "ai"
+    },
+    {
+      "id": "api-integration",
+      "name": "API Integration",
+      "areaId": "data"
+    },
+    {
+      "id": "data-eng",
+      "name": "Data Engineering",
+      "areaId": "data"
+    },
+    {
+      "id": "metric-modeling",
+      "name": "Metric Modeling",
+      "areaId": "data"
+    },
+    {
+      "id": "semantic-modeling",
+      "name": "Semantic Modeling",
+      "areaId": "data"
+    },
+    {
+      "id": "reconciliation",
+      "name": "Reconciliation",
+      "areaId": "data"
+    },
+    {
+      "id": "historical",
+      "name": "Historical & Snapshot Modeling",
+      "areaId": "data"
+    },
+    {
+      "id": "analytical-sql",
+      "name": "Analytical SQL",
+      "areaId": "data"
+    },
+    {
+      "id": "workflow-orch",
+      "name": "Workflow Orchestration",
+      "areaId": "data"
+    },
+    {
+      "id": "fullstack",
+      "name": "Full-stack Web Development",
+      "areaId": "app"
+    },
+    {
+      "id": "async-integration",
+      "name": "Async Integration",
+      "areaId": "app"
+    },
+    {
+      "id": "event-driven",
+      "name": "Event-driven Applications",
+      "areaId": "app"
+    },
+    {
+      "id": "review-ux",
+      "name": "Review UX",
+      "areaId": "app"
+    },
+    {
+      "id": "media-eng",
+      "name": "Media Processing",
+      "areaId": "app"
+    },
+    {
+      "id": "email-eng",
+      "name": "Email Engineering",
+      "areaId": "app"
+    },
+    {
+      "id": "deterministic",
+      "name": "Deterministic Processing",
+      "areaId": "app"
+    },
+    {
+      "id": "caching",
+      "name": "Caching & Precomputation",
+      "areaId": "app"
+    },
+    {
+      "id": "container-ops",
+      "name": "Container Deployment",
+      "areaId": "ops"
+    },
+    {
+      "id": "release-mgmt",
+      "name": "Release Management",
+      "areaId": "ops"
+    },
+    {
+      "id": "testing",
+      "name": "Automated Testing",
+      "areaId": "ops"
+    },
+    {
+      "id": "access-control",
+      "name": "Access Control",
+      "areaId": "ops"
+    },
+    {
+      "id": "observability",
+      "name": "Observability",
+      "areaId": "ops"
+    },
+    {
+      "id": "scheduled-automation",
+      "name": "Scheduled Automation",
+      "areaId": "ops"
+    },
+    {
+      "id": "metric-gov",
+      "name": "Metric Governance",
+      "areaId": "ops"
+    },
+    {
+      "id": "enablement",
+      "name": "Technical Enablement",
+      "areaId": "ops"
+    }
+  ],
+  "projects": [
+    {
+      "id": "operations-dashboard",
+      "title": "Operations Dashboard",
+      "kind": "project",
+      "status": "Implemented",
+      "summary": "One daily view of localization operations data that previously lived in separate tools.",
+      "problem": "Request, translation-volume and cost-efficiency data sat in different systems, so answering a simple operational question meant stitching sources together by hand.",
+      "contribution": "Built the dashboard end to end: the SQL data layer, the metric logic, the app, and a natural-language “Ask the data” feature that uses the same metric definitions as the cards.",
+      "implementation": [
+        "Next.js, React and TypeScript app running on Snowflake App Runtime (SPCS)",
+        "SQL data layer joining Phrase TMS and Wrike data with fiscal-quarter logic",
+        "Dynamic Tables to precompute heavy job-level calculations",
+        "Semantic View + Cortex Agent so dashboard cards and natural-language answers share one metric definition",
+        "Per-question usage logging, role-based access, daily usage email and metric documentation",
+        "Tailwind CSS, shadcn/ui and Recharts UI; deployed with Snowflake CLI"
+      ],
+      "notes": [
+        "Precomputing with Dynamic Tables was described as reducing page-load timeouts; no improvement figure is claimed here."
+      ],
+      "capabilityIds": [
+        "fullstack",
+        "metric-modeling",
+        "caching",
+        "nl2sql",
+        "access-control",
+        "observability"
+      ],
+      "stackIds": [
+        "nextjs",
+        "typescript",
+        "tailwind",
+        "recharts",
+        "sql",
+        "dynamic-tables",
+        "semantic-views",
+        "cortex-agent",
+        "spcs",
+        "snowflake-cli",
+        "rbac",
+        "usage-logs"
+      ],
+      "areaMarks": {
+        "ai": {
+          "mark": "●",
+          "note": "Semantic View + Cortex Agent natural-language questions."
+        },
+        "data": {
+          "mark": "●",
+          "note": "SQL data layer, fiscal-quarter logic, precomputation with Dynamic Tables."
+        },
+        "app": {
+          "mark": "●",
+          "note": "Next.js · React · TypeScript app with Tailwind, shadcn/ui and Recharts."
+        },
+        "ops": {
+          "mark": "●",
+          "note": "App Runtime deployment, role-based access, usage logging and daily usage report."
+        }
+      }
+    },
+    {
+      "id": "phrase-ingestion",
+      "title": "Phrase TMS Ingestion Pipeline",
+      "kind": "project",
+      "status": "Implemented",
+      "summary": "Collects job and workflow history from an external TMS and turns “translated work” into an agreed, reproducible count.",
+      "problem": "Translation volume was reported from several places with different rules, so the same quarter could produce different numbers.",
+      "contribution": "Designed and built the ingestion, the historical backfill and the single SQL definition of what counts, then documented it for the team.",
+      "implementation": [
+        "Phrase TMS API → Snowflake with Snowpark Python stored procedures",
+        "External Access Integration and managed secrets for the outbound API calls",
+        "Job, workflow-step and status-change history, run daily by a Snowflake Task DAG",
+        "Backfill of step-level history covering two fiscal years",
+        "The team’s counting rules encoded in one SQL view, with approval-backed inclusion and exclusion lists",
+        "Dated snapshot tables that freeze published quarterly figures",
+        "Dependency checks before retiring legacy views",
+        "Cross-checks against independent trackers and Wrike history"
+      ],
+      "notes": [
+        "Wrike data reached this pipeline through a Fivetran-synced cache. I used and mapped the synced data; building or operating the Fivetran connector was not part of my role.",
+        "The backfill was reported as completing without API call failures. That is a self-reported result, not an independently verified one."
+      ],
+      "capabilityIds": [
+        "api-integration",
+        "data-eng",
+        "workflow-orch",
+        "historical",
+        "reconciliation",
+        "metric-gov"
+      ],
+      "stackIds": [
+        "python",
+        "snowpark",
+        "sql",
+        "stored-procedures",
+        "tasks",
+        "eai",
+        "secrets",
+        "rest-async",
+        "snapshot-tables",
+        "fivetran"
+      ],
+      "areaMarks": {
+        "ai": {
+          "mark": "—",
+          "note": null
+        },
+        "data": {
+          "mark": "●",
+          "note": "API ingestion, two-year backfill, counting rules as a SQL view, dated snapshots, reconciliation."
+        },
+        "app": {
+          "mark": "●",
+          "note": "External API integration through External Access Integration."
+        },
+        "ops": {
+          "mark": "●",
+          "note": "Daily Task DAG, approval-backed exceptions, dependency checks, documentation."
+        }
+      }
+    },
+    {
+      "id": "shared-metrics",
+      "title": "Shared Metrics & Semantic Layer",
+      "kind": "foundation",
+      "status": "Implemented",
+      "summary": "A shared foundation so the dashboard, the agent, the analytics skills and the newsletter answer the same question the same way.",
+      "problem": "The same metric was being calculated in several places, and the numbers drifted.",
+      "contribution": "Consolidated duplicated logic into shared metric views and a semantic model, and documented the definitions.",
+      "implementation": [
+        "Shared metric views reused by several consumers",
+        "Semantic View and semantic model for natural-language access",
+        "Dashboard cards and agent answers return matching numbers",
+        "Live analysis kept separate from point-in-time published snapshots"
+      ],
+      "notes": [
+        "This is a shared foundation, not an additional independent project. Work built on it is not counted again under each project."
+      ],
+      "capabilityIds": [
+        "semantic-modeling",
+        "metric-gov",
+        "metric-modeling"
+      ],
+      "stackIds": [
+        "shared-metric-views",
+        "semantic-views",
+        "semantic-yaml",
+        "snapshot-tables"
+      ],
+      "areaMarks": {
+        "ai": {
+          "mark": "●",
+          "note": "Semantic model is the basis for agent answers."
+        },
+        "data": {
+          "mark": "●",
+          "note": "Shared metric views and consolidated calculation logic."
+        },
+        "app": {
+          "mark": "—",
+          "note": null
+        },
+        "ops": {
+          "mark": "●",
+          "note": "Documented metric definitions; live vs. published snapshot kept distinct."
+        }
+      }
+    },
+    {
+      "id": "content-journey",
+      "title": "Content Journey",
+      "kind": "project",
+      "status": "Implemented & launched",
+      "summary": "An analytics app that follows content from recommendation through translation and launch to performance.",
+      "problem": "Localization and content-performance data lived in different domains with different access rules, so no one view showed the whole journey.",
+      "contribution": "Built and released the app, designed its access model, and wrote the user documentation and team launch communication.",
+      "implementation": [
+        "Next.js 16, React 19, TypeScript, Tailwind CSS and TanStack Query on Snowflake App Runtime",
+        "Analytical SQL over content-performance and web/SEO data, with quarterly new / top-performer classification",
+        "Internal traffic excluded from first-active-quarter calculations; SEO search data used for recommendations",
+        "Weekly snapshots scheduled with Snowflake Tasks",
+        "Different execution-rights models (owner’s / caller’s rights) applied by data domain",
+        "Per-user query cache, data-freshness indicator and graceful fallback when access is missing",
+        "Vitest unit tests, feature branches with automated PR checks, semantic-versioned releases and changelog"
+      ],
+      "notes": [
+        "Having unit tests in place says nothing by itself about test quality or coverage."
+      ],
+      "capabilityIds": [
+        "fullstack",
+        "analytical-sql",
+        "caching",
+        "access-control",
+        "testing",
+        "release-mgmt",
+        "enablement"
+      ],
+      "stackIds": [
+        "nextjs",
+        "typescript",
+        "tailwind",
+        "tanstack",
+        "sql",
+        "snapshot-tables",
+        "tasks",
+        "spcs",
+        "snowflake-cli",
+        "rbac",
+        "owner-caller",
+        "vitest-pytest",
+        "git",
+        "semver",
+        "usage-logs"
+      ],
+      "areaMarks": {
+        "ai": {
+          "mark": "—",
+          "note": null
+        },
+        "data": {
+          "mark": "●",
+          "note": "Analytical SQL, classification logic, weekly snapshots."
+        },
+        "app": {
+          "mark": "●",
+          "note": "Next.js · React · TanStack Query app with query cache, freshness and fallback states."
+        },
+        "ops": {
+          "mark": "●",
+          "note": "Unit tests and PR checks, semantic-versioned releases, access model by data domain."
+        }
+      }
+    },
+    {
+      "id": "ai-analytics-skills",
+      "title": "AI Analytics Skills",
+      "kind": "project",
+      "status": "Implemented & deployed",
+      "summary": "Reusable AI skills that let the team analyse localization data against one agreed set of definitions.",
+      "problem": "Teammates asking AI tools for numbers got answers built on different assumptions.",
+      "contribution": "Built the skills, grounded them in the semantic model and verified queries, published them to a team catalog, and set up usage reporting.",
+      "implementation": [
+        "Skills for translation volume, per-language performance and efficiency analysis",
+        "Semantic Model YAML and a Verified Query Repository (VQR) for grounding",
+        "Cortex Code Skills published to a team skill catalog",
+        "Skill usage logs and a scheduled weekday email report (Stored Procedure · Task · Notification Integration), including recovery when it failed",
+        "Counting logic cross-checked across ingestion, dashboard and skills"
+      ],
+      "notes": [],
+      "capabilityIds": [
+        "agent-skills",
+        "nl2sql",
+        "semantic-modeling",
+        "observability",
+        "scheduled-automation"
+      ],
+      "stackIds": [
+        "agent-skills",
+        "semantic-yaml",
+        "vqr",
+        "stored-procedures",
+        "tasks",
+        "notification",
+        "shared-metric-views",
+        "usage-logs"
+      ],
+      "areaMarks": {
+        "ai": {
+          "mark": "●",
+          "note": "Agent skills grounded in a semantic model and verified queries."
+        },
+        "data": {
+          "mark": "●",
+          "note": "Consistent counting across ingestion, dashboard and skills."
+        },
+        "app": {
+          "mark": "●",
+          "note": "Scheduled email report built from stored procedures and tasks."
+        },
+        "ops": {
+          "mark": "●",
+          "note": "Usage logging, team catalog, failure recovery for the scheduled report."
+        }
+      }
+    },
+    {
+      "id": "quarterly-newsletter",
+      "title": "Quarterly Localization Newsletter",
+      "kind": "project",
+      "status": "Implemented & in use",
+      "summary": "A reporting pipeline that automates the newsletter from data extraction through pre- and post-send checks.",
+      "problem": "Assembling the quarterly newsletter by hand made the numbers hard to reproduce and easy to get wrong.",
+      "contribution": "Built the generator and the QA steps, and packaged the editorial and data rules as a versioned agent skill.",
+      "implementation": [
+        "SQL extraction of localization and content metrics, frozen with point-in-time snapshots so published figures can be reproduced",
+        "Python newsletter generator producing email HTML (inline CSS, table layout) and a self-contained web version",
+        "Rule-based highlighting of numbers, languages and content areas",
+        "Automated checks for internal links, size limits, typos and links in the sent email",
+        "Editorial and data rules maintained as a versioned agent skill shared in the team catalog",
+        "Planning data connected from Google Sheets through MCP; shared web page published with role-based access"
+      ],
+      "notes": [],
+      "capabilityIds": [
+        "email-eng",
+        "historical",
+        "agent-skills",
+        "testing"
+      ],
+      "stackIds": [
+        "python",
+        "sql",
+        "snapshot-tables",
+        "shared-metric-views",
+        "agent-skills",
+        "mcp",
+        "html-email",
+        "rbac"
+      ],
+      "areaMarks": {
+        "ai": {
+          "mark": "△",
+          "note": "Rules packaged as an agent skill; the newsletter itself is rule-based."
+        },
+        "data": {
+          "mark": "●",
+          "note": "SQL extraction and point-in-time snapshots."
+        },
+        "app": {
+          "mark": "●",
+          "note": "Python generator, email HTML, MCP connection to planning data."
+        },
+        "ops": {
+          "mark": "●",
+          "note": "Pre- and post-send QA, role-based shared page."
+        }
+      }
+    },
+    {
+      "id": "subtitle-studio",
+      "title": "Subtitle Studio",
+      "kind": "project",
+      "status": "Implemented & deployed",
+      "summary": "Connects transcription, translation, rule-based subtitle formatting, human review and video burn-in.",
+      "problem": "Subtitling mixed AI steps, strict formatting rules and human judgement, and each was handled separately.",
+      "contribution": "Built the pipeline and the review app, separated model decisions from deterministic formatting, and packaged a self-service edition for other teams.",
+      "implementation": [
+        "Transcription → LLM translation → deterministic formatting → FFmpeg burn-in",
+        "Snowflake Cortex AI with Claude and GPT model fallback",
+        "Submit → poll → retry → validate against an internal translation service’s asynchronous API",
+        "Line length, timing, reading speed and language-specific line breaking, including Korean and Japanese rules",
+        "Review app (Next.js, React, TanStack Query) with Web Audio waveform timeline, source-text alignment and versioned drafts",
+        "On-demand AI phrase matching; pytest and Vitest regression tests",
+        "Reusable agent skill for natural-language project setup"
+      ],
+      "notes": [
+        "8 languages are supported; 4 have actually been used. Supported is not the same as in use.",
+        "Source videos stay local. That does not mean every processing step and all data stay local."
+      ],
+      "capabilityIds": [
+        "multimodal",
+        "model-fallback",
+        "async-integration",
+        "deterministic",
+        "review-ux",
+        "media-eng",
+        "testing"
+      ],
+      "stackIds": [
+        "python",
+        "typescript",
+        "nextjs",
+        "tanstack",
+        "cortex-ai-llm",
+        "stored-procedures",
+        "rest-async",
+        "spcs",
+        "ffmpeg",
+        "web-audio",
+        "vitest-pytest",
+        "agent-skills"
+      ],
+      "areaMarks": {
+        "ai": {
+          "mark": "●",
+          "note": "Cortex AI transcription and translation, Claude/GPT fallback, AI phrase matching."
+        },
+        "data": {
+          "mark": "—",
+          "note": null
+        },
+        "app": {
+          "mark": "●",
+          "note": "Async submit/poll/retry, review app with waveform timeline, FFmpeg + libass rendering."
+        },
+        "ops": {
+          "mark": "●",
+          "note": "Regression tests, App Runtime deployment, self-service edition."
+        }
+      }
+    },
+    {
+      "id": "content-search-assistant",
+      "title": "Content Search Assistant",
+      "kind": "project",
+      "status": "In production",
+      "summary": "A multilingual Slack assistant for finding blog posts, customer stories and digital assets.",
+      "problem": "Colleagues in different languages struggled to find the right piece of content quickly.",
+      "contribution": "Built and operated it end to end — search data, agent, Slack app and deployment — and improved it from query logs.",
+      "implementation": [
+        "Cortex Agent orchestration over eight tools (three Cortex Search services, five SQL UDFs)",
+        "Keyword search (ILIKE) first; semantic search (snowflake-arctic-embed-m-v1.5) when keyword search finds nothing",
+        "Language-inference priority, tool-routing rules and response-format constraints",
+        "Search text combining title, tags, industry and product; metadata recovered from URL paths",
+        "Diagnosed a metric discontinuity caused by an upstream data change",
+        "Python Slack Bolt app over Socket Mode: Home tab, Block Kit, DM commands, mentions, modal filters",
+        "Eight languages, CJK spacing normalisation and Slack mrkdwn handling",
+        "Docker (linux/amd64) images, versioning and rolling deployment on SPCS; managed with Snowflake CLI and the agent-studio CLI",
+        "Usage logging → zero-result query analysis → fixes → redeploy"
+      ],
+      "notes": [
+        "Retrieval is multi-stage: keyword first, then semantic as a fallback. Results are not fused or reranked, so this is not hybrid retrieval.",
+        "Query-log work reduced the zero-result rate — the share of searches that return nothing. That is not a measure of search accuracy or answer correctness."
+      ],
+      "capabilityIds": [
+        "agent-orch",
+        "search-eng",
+        "multilingual",
+        "event-driven",
+        "container-ops",
+        "observability"
+      ],
+      "stackIds": [
+        "python",
+        "sql",
+        "cortex-agent",
+        "cortex-search",
+        "embeddings",
+        "ilike-udf",
+        "change-tracking",
+        "slack-bolt",
+        "spcs",
+        "docker",
+        "snowflake-cli",
+        "agent-studio-cli",
+        "oauth",
+        "secrets",
+        "git",
+        "usage-logs"
+      ],
+      "areaMarks": {
+        "ai": {
+          "mark": "●",
+          "note": "Agent orchestration, tool routing, keyword → semantic multi-stage retrieval."
+        },
+        "data": {
+          "mark": "●",
+          "note": "Search text and metadata preparation, change tracking for index refresh."
+        },
+        "app": {
+          "mark": "●",
+          "note": "Python Slack Bolt app over Socket Mode with Block Kit UI."
+        },
+        "ops": {
+          "mark": "●",
+          "note": "Docker images and rolling deployment, usage logging and log-driven fixes."
+        }
+      }
+    },
+    {
+      "id": "world-tour-cowork",
+      "title": "Snowflake World Tour Seoul — CoWork demo",
+      "kind": "project",
+      "status": "Role scope being documented",
+      "summary": "Demoed Snowflake CoWork and answered technical questions from visitors at the event.",
+      "problem": "Visitors needed to see an AI product in a realistic working context, not a slide.",
+      "contribution": "Ran live demos and technical Q&A on the experience-zone floor.",
+      "implementation": [
+        "Customer-facing demos",
+        "Technical Q&A tied to real use cases"
+      ],
+      "notes": [
+        "Taking part in the event does not mean I designed, built or operate the product."
+      ],
+      "capabilityIds": [
+        "enablement"
+      ],
+      "stackIds": [],
+      "areaMarks": {
+        "ai": {
+          "mark": "△",
+          "note": "Demoed and explained an AI product; implementation scope not claimed."
+        },
+        "data": {
+          "mark": "—",
+          "note": null
+        },
+        "app": {
+          "mark": "?",
+          "note": "Demo environment details still being documented."
+        },
+        "ops": {
+          "mark": "△",
+          "note": "Technical enablement and customer communication."
+        }
+      }
+    },
+    {
+      "id": "qa-exception-planner",
+      "title": "QA Exception Planner (design)",
+      "kind": "project",
+      "status": "Designed",
+      "summary": "Planning how a blog translation QA pipeline should handle exceptions within explicit constraints.",
+      "problem": "Automated QA needs a defined way to handle cases it should not resolve on its own.",
+      "contribution": "Designed the planning approach and the evaluation scenarios and criteria.",
+      "implementation": [
+        "Constrained planning, guardrails and human hand-off as design concerns",
+        "Evaluation scenarios and criteria designed"
+      ],
+      "notes": [
+        "The evaluation was designed; designing an evaluation is not the same as running it, and no results are claimed."
+      ],
+      "capabilityIds": [
+        "eval-design",
+        "guardrails"
+      ],
+      "stackIds": [],
+      "areaMarks": {
+        "ai": {
+          "mark": "△",
+          "note": "Constrained planning and evaluation design — design level."
+        },
+        "data": {
+          "mark": "—",
+          "note": null
+        },
+        "app": {
+          "mark": "?",
+          "note": "Implementation status not claimed."
+        },
+        "ops": {
+          "mark": "△",
+          "note": "Guardrails and human hand-off defined as design concerns."
+        }
+      }
+    }
+  ],
+  "stack": [
+    {
+      "id": "python",
+      "name": "Python",
+      "use": "API ingestion, subtitle processing, newsletter generation, Slack event handling",
+      "capability": "Backend automation, data processing",
+      "projectIds": [
+        "phrase-ingestion",
+        "subtitle-studio",
+        "quarterly-newsletter",
+        "content-search-assistant"
+      ],
+      "conceptIds": [],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "snowpark",
+      "name": "Snowpark Python",
+      "use": "Stored procedures that pull Phrase TMS history into Snowflake",
+      "capability": "Server-side data integration",
+      "projectIds": [
+        "phrase-ingestion"
+      ],
+      "conceptIds": [
+        "backfill"
+      ],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "sql",
+      "name": "SQL / Views",
+      "use": "Aggregation, status mapping, analysis and search metadata",
+      "capability": "Analytics engineering",
+      "projectIds": [
+        "operations-dashboard",
+        "phrase-ingestion",
+        "shared-metrics",
+        "content-journey",
+        "quarterly-newsletter",
+        "content-search-assistant"
+      ],
+      "conceptIds": [
+        "grain",
+        "reconciliation"
+      ],
+      "aliases": [
+        "query"
+      ],
+      "note": null
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "use": "UI and data flow in the web apps",
+      "capability": "Typed application development",
+      "projectIds": [
+        "operations-dashboard",
+        "content-journey",
+        "subtitle-studio"
+      ],
+      "conceptIds": [],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "nextjs",
+      "name": "Next.js / React",
+      "use": "Operations Dashboard, Content Journey, subtitle review app",
+      "capability": "Web application engineering",
+      "projectIds": [
+        "operations-dashboard",
+        "content-journey",
+        "subtitle-studio"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "react",
+        "frontend"
+      ],
+      "note": null
+    },
+    {
+      "id": "tailwind",
+      "name": "Tailwind CSS / shadcn/ui",
+      "use": "Styling and UI components",
+      "capability": "UI implementation",
+      "projectIds": [
+        "operations-dashboard",
+        "content-journey"
+      ],
+      "conceptIds": [],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "recharts",
+      "name": "Recharts",
+      "use": "Operational metric charts",
+      "capability": "Data visualization",
+      "projectIds": [
+        "operations-dashboard"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "charts"
+      ],
+      "note": null
+    },
+    {
+      "id": "tanstack",
+      "name": "TanStack Query",
+      "use": "Data fetching and caching in the apps",
+      "capability": "Server-state management",
+      "projectIds": [
+        "content-journey",
+        "subtitle-studio"
+      ],
+      "conceptIds": [
+        "cache"
+      ],
+      "aliases": [
+        "react query",
+        "cache"
+      ],
+      "note": null
+    },
+    {
+      "id": "dynamic-tables",
+      "name": "Dynamic Tables",
+      "use": "Precomputing heavy job-level calculations",
+      "capability": "Precomputation, performance",
+      "projectIds": [
+        "operations-dashboard"
+      ],
+      "conceptIds": [
+        "cache"
+      ],
+      "aliases": [
+        "precompute",
+        "performance"
+      ],
+      "note": null
+    },
+    {
+      "id": "snapshot-tables",
+      "name": "Snapshot Tables",
+      "use": "Freezing published figures; weekly recommendation history",
+      "capability": "Point-in-time reporting",
+      "projectIds": [
+        "phrase-ingestion",
+        "quarterly-newsletter",
+        "content-journey",
+        "shared-metrics"
+      ],
+      "conceptIds": [
+        "snapshot"
+      ],
+      "aliases": [
+        "point-in-time"
+      ],
+      "note": null
+    },
+    {
+      "id": "stored-procedures",
+      "name": "Stored Procedures",
+      "use": "Ingestion and reporting logic",
+      "capability": "Backend processing",
+      "projectIds": [
+        "phrase-ingestion",
+        "ai-analytics-skills",
+        "subtitle-studio"
+      ],
+      "conceptIds": [],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "tasks",
+      "name": "Tasks / Task DAG",
+      "use": "Scheduled runs and dependencies",
+      "capability": "Workflow orchestration",
+      "projectIds": [
+        "phrase-ingestion",
+        "content-journey",
+        "ai-analytics-skills"
+      ],
+      "conceptIds": [
+        "dag"
+      ],
+      "aliases": [
+        "scheduling",
+        "cron",
+        "orchestration"
+      ],
+      "note": null
+    },
+    {
+      "id": "eai",
+      "name": "External Access Integration",
+      "use": "Calling an external API from Snowflake",
+      "capability": "Secure connectivity",
+      "projectIds": [
+        "phrase-ingestion"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "egress"
+      ],
+      "note": null
+    },
+    {
+      "id": "secrets",
+      "name": "Managed Secrets",
+      "use": "Storing credentials for API and service access",
+      "capability": "Secrets management",
+      "projectIds": [
+        "phrase-ingestion",
+        "content-search-assistant"
+      ],
+      "conceptIds": [
+        "rights"
+      ],
+      "aliases": [
+        "credentials"
+      ],
+      "note": null
+    },
+    {
+      "id": "rest-async",
+      "name": "REST / Async APIs",
+      "use": "TMS ingestion; submit-and-poll translation jobs",
+      "capability": "API integration",
+      "projectIds": [
+        "phrase-ingestion",
+        "subtitle-studio"
+      ],
+      "conceptIds": [
+        "retry",
+        "idempotency"
+      ],
+      "aliases": [
+        "retry",
+        "polling",
+        "async"
+      ],
+      "note": null
+    },
+    {
+      "id": "fivetran",
+      "name": "Fivetran-synced data",
+      "use": "Using Wrike data that arrives through a Fivetran-synced cache",
+      "capability": "Integration context",
+      "projectIds": [
+        "phrase-ingestion"
+      ],
+      "conceptIds": [],
+      "aliases": [],
+      "note": "Using synced data; connector ownership is not claimed."
+    },
+    {
+      "id": "shared-metric-views",
+      "name": "Shared Metric Views",
+      "use": "One calculation reused by several consumers",
+      "capability": "Metric governance",
+      "projectIds": [
+        "shared-metrics",
+        "operations-dashboard",
+        "ai-analytics-skills",
+        "quarterly-newsletter"
+      ],
+      "conceptIds": [
+        "semantic-layer"
+      ],
+      "aliases": [
+        "metrics"
+      ],
+      "note": null
+    },
+    {
+      "id": "semantic-views",
+      "name": "Semantic Views",
+      "use": "Defining metrics, dimensions and relationships",
+      "capability": "Semantic modeling",
+      "projectIds": [
+        "shared-metrics",
+        "operations-dashboard"
+      ],
+      "conceptIds": [
+        "semantic-layer"
+      ],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "semantic-yaml",
+      "name": "Semantic Model YAML",
+      "use": "Semantic model used for AI analytics",
+      "capability": "NL2SQL modeling",
+      "projectIds": [
+        "ai-analytics-skills",
+        "shared-metrics"
+      ],
+      "conceptIds": [
+        "semantic-layer"
+      ],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "vqr",
+      "name": "Verified Query Repository",
+      "use": "Verified example queries for grounding",
+      "capability": "Query grounding",
+      "projectIds": [
+        "ai-analytics-skills"
+      ],
+      "conceptIds": [
+        "semantic-layer"
+      ],
+      "aliases": [
+        "VQR"
+      ],
+      "note": null
+    },
+    {
+      "id": "cortex-agent",
+      "name": "Cortex Agent",
+      "use": "Natural-language analytics and tool orchestration",
+      "capability": "Agent orchestration",
+      "projectIds": [
+        "operations-dashboard",
+        "content-search-assistant"
+      ],
+      "conceptIds": [
+        "tool-routing"
+      ],
+      "aliases": [
+        "agent",
+        "llm"
+      ],
+      "note": null
+    },
+    {
+      "id": "cortex-search",
+      "name": "Cortex Search",
+      "use": "Semantic retrieval over content",
+      "capability": "Search engineering",
+      "projectIds": [
+        "content-search-assistant"
+      ],
+      "conceptIds": [
+        "multi-stage",
+        "embeddings"
+      ],
+      "aliases": [
+        "semantic search"
+      ],
+      "note": null
+    },
+    {
+      "id": "embeddings",
+      "name": "Embeddings",
+      "use": "Meaning-based representations for search",
+      "capability": "Semantic retrieval",
+      "projectIds": [
+        "content-search-assistant"
+      ],
+      "conceptIds": [
+        "embeddings"
+      ],
+      "aliases": [
+        "vector"
+      ],
+      "note": null
+    },
+    {
+      "id": "ilike-udf",
+      "name": "ILIKE / SQL UDFs",
+      "use": "Keyword search and agent tool functions",
+      "capability": "Retrieval logic",
+      "projectIds": [
+        "content-search-assistant"
+      ],
+      "conceptIds": [
+        "multi-stage",
+        "fallback"
+      ],
+      "aliases": [
+        "keyword search"
+      ],
+      "note": null
+    },
+    {
+      "id": "change-tracking",
+      "name": "Change Tracking",
+      "use": "Keeping the search index in step with source data",
+      "capability": "Index freshness",
+      "projectIds": [
+        "content-search-assistant"
+      ],
+      "conceptIds": [],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "cortex-ai-llm",
+      "name": "Cortex AI / Claude / GPT",
+      "use": "Transcription and translation with model fallback",
+      "capability": "AI pipeline integration",
+      "projectIds": [
+        "subtitle-studio"
+      ],
+      "conceptIds": [
+        "fallback"
+      ],
+      "aliases": [
+        "llm",
+        "model"
+      ],
+      "note": null
+    },
+    {
+      "id": "agent-skills",
+      "name": "Agent Skills / Skill Catalog",
+      "use": "Packaging working rules and sharing them with the team",
+      "capability": "Reusable AI workflows",
+      "projectIds": [
+        "ai-analytics-skills",
+        "quarterly-newsletter",
+        "subtitle-studio"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "skills"
+      ],
+      "note": null
+    },
+    {
+      "id": "mcp",
+      "name": "MCP / Google Sheets",
+      "use": "Bringing planning data into the newsletter workflow",
+      "capability": "Tool integration",
+      "projectIds": [
+        "quarterly-newsletter"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "model context protocol"
+      ],
+      "note": null
+    },
+    {
+      "id": "notification",
+      "name": "Notification Integration",
+      "use": "Scheduled email reports",
+      "capability": "Operational automation",
+      "projectIds": [
+        "ai-analytics-skills"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "email report"
+      ],
+      "note": null
+    },
+    {
+      "id": "spcs",
+      "name": "Snowflake App Runtime / SPCS",
+      "use": "Running and deploying apps and containers",
+      "capability": "Application infrastructure",
+      "projectIds": [
+        "operations-dashboard",
+        "content-journey",
+        "subtitle-studio",
+        "content-search-assistant"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "containers",
+        "deployment"
+      ],
+      "note": null
+    },
+    {
+      "id": "docker",
+      "name": "Docker / Image Registry",
+      "use": "Building, versioning and deploying the assistant image",
+      "capability": "Container delivery",
+      "projectIds": [
+        "content-search-assistant"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "container"
+      ],
+      "note": null
+    },
+    {
+      "id": "snowflake-cli",
+      "name": "Snowflake CLI",
+      "use": "Deploying apps and services",
+      "capability": "Deployment workflow",
+      "projectIds": [
+        "operations-dashboard",
+        "content-journey",
+        "content-search-assistant"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "deploy"
+      ],
+      "note": null
+    },
+    {
+      "id": "agent-studio-cli",
+      "name": "Agent Studio CLI",
+      "use": "Managing and deploying the agent specification",
+      "capability": "Agent configuration management",
+      "projectIds": [
+        "content-search-assistant"
+      ],
+      "conceptIds": [],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "slack-bolt",
+      "name": "Slack Bolt / Socket Mode / Block Kit",
+      "use": "WebSocket event handling and Slack UI",
+      "capability": "Event-driven applications",
+      "projectIds": [
+        "content-search-assistant"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "slack",
+        "websocket"
+      ],
+      "note": null
+    },
+    {
+      "id": "oauth",
+      "name": "OAuth",
+      "use": "Service authentication",
+      "capability": "Authentication",
+      "projectIds": [
+        "content-search-assistant"
+      ],
+      "conceptIds": [
+        "rights"
+      ],
+      "aliases": [],
+      "note": null
+    },
+    {
+      "id": "rbac",
+      "name": "RBAC",
+      "use": "Role-based access control",
+      "capability": "Authorization",
+      "projectIds": [
+        "operations-dashboard",
+        "content-journey",
+        "quarterly-newsletter"
+      ],
+      "conceptIds": [
+        "rights"
+      ],
+      "aliases": [
+        "permissions",
+        "roles",
+        "access"
+      ],
+      "note": null
+    },
+    {
+      "id": "owner-caller",
+      "name": "Owner’s / Caller’s Rights",
+      "use": "Choosing whose privileges a procedure runs with, by data domain",
+      "capability": "Access architecture",
+      "projectIds": [
+        "content-journey"
+      ],
+      "conceptIds": [
+        "rights"
+      ],
+      "aliases": [
+        "permissions",
+        "least privilege"
+      ],
+      "note": null
+    },
+    {
+      "id": "ffmpeg",
+      "name": "FFmpeg / libass",
+      "use": "Subtitle rendering and burn-in",
+      "capability": "Media processing",
+      "projectIds": [
+        "subtitle-studio"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "video",
+        "subtitles"
+      ],
+      "note": null
+    },
+    {
+      "id": "web-audio",
+      "name": "Web Audio API",
+      "use": "Waveform timeline for subtitle review",
+      "capability": "Browser media engineering",
+      "projectIds": [
+        "subtitle-studio"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "audio",
+        "waveform"
+      ],
+      "note": null
+    },
+    {
+      "id": "vitest-pytest",
+      "name": "Vitest / pytest",
+      "use": "Unit and regression tests",
+      "capability": "Software testing",
+      "projectIds": [
+        "subtitle-studio",
+        "content-journey"
+      ],
+      "conceptIds": [
+        "regression"
+      ],
+      "aliases": [
+        "tests",
+        "testing"
+      ],
+      "note": null
+    },
+    {
+      "id": "git",
+      "name": "Git / GitHub / PR checks",
+      "use": "Code review and automated checks",
+      "capability": "Development lifecycle",
+      "projectIds": [
+        "content-journey",
+        "content-search-assistant"
+      ],
+      "conceptIds": [
+        "ci-release"
+      ],
+      "aliases": [
+        "github",
+        "pull request"
+      ],
+      "note": null
+    },
+    {
+      "id": "semver",
+      "name": "Semantic Versioning / Changelog",
+      "use": "Release versions and change history",
+      "capability": "Release management",
+      "projectIds": [
+        "content-journey"
+      ],
+      "conceptIds": [
+        "ci-release"
+      ],
+      "aliases": [
+        "release",
+        "version"
+      ],
+      "note": null
+    },
+    {
+      "id": "html-email",
+      "name": "HTML email (inline CSS, tables)",
+      "use": "Email-client-safe newsletter layout",
+      "capability": "Email engineering",
+      "projectIds": [
+        "quarterly-newsletter"
+      ],
+      "conceptIds": [],
+      "aliases": [
+        "email"
+      ],
+      "note": null
+    },
+    {
+      "id": "usage-logs",
+      "name": "Usage logs / freshness indicators",
+      "use": "Seeing what is used and how current the data is",
+      "capability": "Observability",
+      "projectIds": [
+        "operations-dashboard",
+        "content-journey",
+        "ai-analytics-skills",
+        "content-search-assistant"
+      ],
+      "conceptIds": [
+        "observability"
+      ],
+      "aliases": [
+        "logging",
+        "monitoring"
+      ],
+      "note": null
+    }
+  ],
+  "concepts": [
+    {
+      "id": "grain",
+      "name": "Grain",
+      "definition": "What one row — or one counted unit — represents.",
+      "inPractice": "Translation work can be counted per job, per workflow step or per completed piece of work; choosing the unit is what makes a count reproducible.",
+      "projectLinks": [
+        {
+          "projectId": "phrase-ingestion",
+          "level": "related",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "reconciliation"
+      ],
+      "question": "What exactly is being counted once?",
+      "aliases": []
+    },
+    {
+      "id": "semantic-layer",
+      "name": "Semantic Layer",
+      "definition": "A shared definition of metrics, dimensions and relationships that every consumer uses.",
+      "inPractice": "The dashboard, the agent and the analytics skills read the same definitions, so the same question gets the same number.",
+      "projectLinks": [
+        {
+          "projectId": "shared-metrics",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "operations-dashboard",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "ai-analytics-skills",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [],
+      "question": "Is the same question calculated the same way everywhere?",
+      "aliases": []
+    },
+    {
+      "id": "snapshot",
+      "name": "Snapshot",
+      "definition": "A record that freezes a state or result at a point in time.",
+      "inPractice": "Published quarterly figures are frozen so they can be reproduced later, even as live data keeps changing.",
+      "projectLinks": [
+        {
+          "projectId": "quarterly-newsletter",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "phrase-ingestion",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "content-journey",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "backfill"
+      ],
+      "question": "Why does the published number differ from the live one?",
+      "aliases": []
+    },
+    {
+      "id": "reconciliation",
+      "name": "Reconciliation",
+      "definition": "Comparing figures from separate sources and explaining the differences.",
+      "inPractice": "Ingested counts were cross-checked against independent trackers and against the dashboard and skills.",
+      "projectLinks": [
+        {
+          "projectId": "phrase-ingestion",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "ai-analytics-skills",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "grain"
+      ],
+      "question": "Is a difference a missing record or a different definition?",
+      "aliases": []
+    },
+    {
+      "id": "backfill",
+      "name": "Backfill",
+      "definition": "Filling in historical data after the fact.",
+      "inPractice": "Step-level history for two fiscal years was loaded after the daily pipeline was in place.",
+      "projectLinks": [
+        {
+          "projectId": "phrase-ingestion",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "idempotency"
+      ],
+      "question": "How do you know the backfilled period is complete?",
+      "aliases": []
+    },
+    {
+      "id": "dag",
+      "name": "DAG (task dependencies)",
+      "definition": "A graph of tasks and their dependencies with no cycles.",
+      "inPractice": "Daily ingestion runs as a Snowflake Task DAG so each step waits for the one it depends on.",
+      "projectLinks": [
+        {
+          "projectId": "phrase-ingestion",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [],
+      "question": "What happens downstream when an upstream task fails?",
+      "aliases": []
+    },
+    {
+      "id": "idempotency",
+      "name": "Idempotency",
+      "definition": "Running the same operation again leaves the system in the same state.",
+      "inPractice": "Relevant wherever jobs are re-run or retried — ingestion re-runs and translation-job retries.",
+      "projectLinks": [
+        {
+          "projectId": "phrase-ingestion",
+          "level": "related",
+          "note": null
+        },
+        {
+          "projectId": "subtitle-studio",
+          "level": "related",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "retry"
+      ],
+      "question": "Is a retry safe if the first response was lost?",
+      "aliases": [
+        "re-run"
+      ]
+    },
+    {
+      "id": "retry",
+      "name": "Retry, timeout and polling",
+      "definition": "Trying again after failure, bounding how long to wait, and checking job status on an interval.",
+      "inPractice": "Translation jobs are submitted, polled, retried and validated against an asynchronous API.",
+      "projectLinks": [
+        {
+          "projectId": "subtitle-studio",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "idempotency",
+        "fallback"
+      ],
+      "question": "Which errors should never be retried?",
+      "aliases": [
+        "polling",
+        "timeout",
+        "async"
+      ]
+    },
+    {
+      "id": "fallback",
+      "name": "Fallback",
+      "definition": "Switching to an alternative path when the primary one fails or returns nothing.",
+      "inPractice": "Subtitle translation falls back between models; content search falls back from keyword to semantic search.",
+      "projectLinks": [
+        {
+          "projectId": "subtitle-studio",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "content-search-assistant",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "multi-stage"
+      ],
+      "question": "What triggers the switch, and how do results differ?",
+      "aliases": []
+    },
+    {
+      "id": "multi-stage",
+      "name": "Multi-stage vs. hybrid retrieval",
+      "definition": "Multi-stage retrieval runs search steps in sequence under conditions; hybrid retrieval combines results from different methods.",
+      "inPractice": "The content search assistant is multi-stage: keyword first, semantic only when keyword finds nothing. It does not fuse or rerank results.",
+      "projectLinks": [
+        {
+          "projectId": "content-search-assistant",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "fallback",
+        "embeddings"
+      ],
+      "question": "Is there an actual step that combines results?",
+      "aliases": [
+        "hybrid",
+        "reranking"
+      ]
+    },
+    {
+      "id": "embeddings",
+      "name": "Embeddings",
+      "definition": "Numerical representations that let text be compared by meaning.",
+      "inPractice": "Semantic search over content uses an embedding model through Cortex Search.",
+      "projectLinks": [
+        {
+          "projectId": "content-search-assistant",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "multi-stage"
+      ],
+      "question": "Does “similar” mean “correct”?",
+      "aliases": [
+        "vector"
+      ]
+    },
+    {
+      "id": "tool-routing",
+      "name": "Tool routing",
+      "definition": "Choosing which tool to call, with which arguments, for a request.",
+      "inPractice": "The search agent routes between search services and SQL functions under explicit routing rules.",
+      "projectLinks": [
+        {
+          "projectId": "content-search-assistant",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [],
+      "question": "Can a wrong answer be told apart from a wrong tool choice?",
+      "aliases": []
+    },
+    {
+      "id": "eval-vs-test",
+      "name": "Evaluation vs. testing",
+      "definition": "Tests check code behaviour against expected outputs; evaluations judge model or agent behaviour against criteria.",
+      "inPractice": "Regression tests guard the subtitle pipeline and the analytics app; evaluation scenarios were designed for the QA exception planner but not yet run.",
+      "projectLinks": [
+        {
+          "projectId": "subtitle-studio",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "content-journey",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "qa-exception-planner",
+          "level": "related",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "regression"
+      ],
+      "question": "Is this checking code, or judging behaviour?",
+      "aliases": []
+    },
+    {
+      "id": "regression",
+      "name": "Regression test",
+      "definition": "A check that existing behaviour still works after a change.",
+      "inPractice": "Subtitle formatting rules are protected by regression tests.",
+      "projectLinks": [
+        {
+          "projectId": "subtitle-studio",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "eval-vs-test"
+      ],
+      "question": "Which change is this test meant to catch?",
+      "aliases": [
+        "tests"
+      ]
+    },
+    {
+      "id": "hitl",
+      "name": "Human-in-the-loop",
+      "definition": "Designing where a person reviews or decides within an automated flow.",
+      "inPractice": "Subtitle drafts go through browser review before burn-in; the QA exception planner defines hand-off to a person as a design concern.",
+      "projectLinks": [
+        {
+          "projectId": "subtitle-studio",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "qa-exception-planner",
+          "level": "related",
+          "note": null
+        }
+      ],
+      "relatedIds": [],
+      "question": "When, to whom and with what is work handed over?",
+      "aliases": [
+        "review",
+        "approval"
+      ]
+    },
+    {
+      "id": "deterministic",
+      "name": "Deterministic processing",
+      "definition": "Processing that gives the same output for the same input and rules.",
+      "inPractice": "Translation is left to the model; line length, timing and line breaks are handled by deterministic rules.",
+      "projectLinks": [
+        {
+          "projectId": "subtitle-studio",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [],
+      "question": "Why separate model judgement from rule processing?",
+      "aliases": []
+    },
+    {
+      "id": "cache",
+      "name": "Caching and precomputation",
+      "definition": "Reusing results, or computing them ahead of time.",
+      "inPractice": "A per-user query cache in Content Journey; Dynamic Tables precompute heavy calculations for the dashboard.",
+      "projectLinks": [
+        {
+          "projectId": "content-journey",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "operations-dashboard",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [],
+      "question": "When does a cached result expire, and whose access does it respect?",
+      "aliases": []
+    },
+    {
+      "id": "rights",
+      "name": "Authentication, authorization and execution rights",
+      "definition": "Who someone is; what they may do; and whose privileges a procedure runs with.",
+      "inPractice": "OAuth and secrets for service auth, RBAC for apps, and owner’s or caller’s rights chosen per data domain.",
+      "projectLinks": [
+        {
+          "projectId": "content-journey",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "content-search-assistant",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "operations-dashboard",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [],
+      "question": "Does a successful login mean data access is allowed?",
+      "aliases": [
+        "rbac",
+        "permissions",
+        "oauth"
+      ]
+    },
+    {
+      "id": "observability",
+      "name": "Observability",
+      "definition": "Understanding a system’s behaviour from its logs and state.",
+      "inPractice": "Usage logs, freshness indicators and scheduled usage reports across the apps and skills.",
+      "projectLinks": [
+        {
+          "projectId": "content-search-assistant",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "ai-analytics-skills",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "content-journey",
+          "level": "direct",
+          "note": null
+        },
+        {
+          "projectId": "operations-dashboard",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [],
+      "question": "Can a failure be told apart from no one using it?",
+      "aliases": [
+        "logging",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "zero-result",
+      "name": "Zero-result rate",
+      "definition": "The share of searches that return no results.",
+      "inPractice": "Used to find and fix gaps in the content search assistant. It measures coverage of queries, not accuracy or relevance.",
+      "projectLinks": [
+        {
+          "projectId": "content-search-assistant",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "multi-stage"
+      ],
+      "question": "Are the denominator, period and comparison the same?",
+      "aliases": []
+    },
+    {
+      "id": "ci-release",
+      "name": "CI and release management",
+      "definition": "Automated checks on changes, and managing versioned releases.",
+      "inPractice": "Feature branches with automated PR checks, semantic versioning and a changelog for Content Journey.",
+      "projectLinks": [
+        {
+          "projectId": "content-journey",
+          "level": "direct",
+          "note": null
+        }
+      ],
+      "relatedIds": [
+        "regression"
+      ],
+      "question": "Is passing tests the same as a successful release?",
+      "aliases": []
+    }
+  ],
+  "architectures": [
+    {
+      "id": "loc",
+      "title": "Localization data & analytics",
+      "description": "How translation-operations data becomes one set of shared metrics.",
+      "lanes": [
+        {
+          "label": "Ingestion",
+          "steps": [
+            {
+              "label": "Phrase TMS API",
+              "kind": "data"
+            },
+            {
+              "label": "Snowpark Python + External Access",
+              "kind": "app"
+            },
+            {
+              "label": "Stored procedures + Task DAG",
+              "kind": "app"
+            },
+            {
+              "label": "Job / step / status history",
+              "kind": "data"
+            }
+          ]
+        },
+        {
+          "label": "Supplementary source",
+          "steps": [
+            {
+              "label": "Wrike",
+              "kind": "data"
+            },
+            {
+              "label": "Fivetran-synced cache",
+              "kind": "data"
+            },
+            {
+              "label": "Status & workflow mapping",
+              "kind": "rule"
+            }
+          ]
+        },
+        {
+          "label": "Shared metrics",
+          "steps": [
+            {
+              "label": "Counting rules + approved exceptions + reconciliation",
+              "kind": "rule"
+            },
+            {
+              "label": "Shared metric views",
+              "kind": "data"
+            },
+            {
+              "label": "Dashboard · semantic model · skills · newsletter",
+              "kind": "app"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Wrike fills in only where Phrase has no record.",
+        "The newsletter reads point-in-time snapshots, separate from live analysis.",
+        "Exceptions are approved by people before they change the count."
+      ]
+    },
+    {
+      "id": "search",
+      "title": "Content search assistant",
+      "description": "Request path, search-data path and improvement loop.",
+      "lanes": [
+        {
+          "label": "Request",
+          "steps": [
+            {
+              "label": "Slack event",
+              "kind": "app"
+            },
+            {
+              "label": "Python Bolt · Socket Mode",
+              "kind": "app"
+            },
+            {
+              "label": "Cortex Agent routing",
+              "kind": "ai"
+            },
+            {
+              "label": "Keyword tools",
+              "kind": "rule"
+            },
+            {
+              "label": "Cortex Search if needed",
+              "kind": "ai"
+            },
+            {
+              "label": "Formatted reply",
+              "kind": "rule"
+            }
+          ]
+        },
+        {
+          "label": "Search data",
+          "steps": [
+            {
+              "label": "Source content",
+              "kind": "data"
+            },
+            {
+              "label": "SQL views · search text · metadata fixes",
+              "kind": "data"
+            },
+            {
+              "label": "Cortex Search index",
+              "kind": "ai"
+            }
+          ]
+        },
+        {
+          "label": "Improvement",
+          "steps": [
+            {
+              "label": "Usage logs",
+              "kind": "data"
+            },
+            {
+              "label": "Zero-result analysis",
+              "kind": "human"
+            },
+            {
+              "label": "Fix",
+              "kind": "human"
+            },
+            {
+              "label": "Versioned deployment",
+              "kind": "app"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Keyword → semantic is a fallback sequence (multi-stage), not hybrid retrieval."
+      ]
+    },
+    {
+      "id": "subtitle",
+      "title": "Subtitle pipeline",
+      "description": "Where AI, rules and people each take over.",
+      "lanes": [
+        {
+          "label": null,
+          "steps": [
+            {
+              "label": "Local source video",
+              "kind": "data"
+            },
+            {
+              "label": "Transcription",
+              "kind": "ai"
+            },
+            {
+              "label": "Async translation: submit · poll · retry · validate",
+              "kind": "ai"
+            },
+            {
+              "label": "Deterministic formatter",
+              "kind": "rule"
+            },
+            {
+              "label": "Browser review · versioned drafts",
+              "kind": "human"
+            },
+            {
+              "label": "FFmpeg + libass burn-in",
+              "kind": "rule"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Source videos stay local; that does not mean every step runs locally."
+      ]
+    },
+    {
+      "id": "journey",
+      "title": "Content analytics app",
+      "description": "From several data domains to one app, with access rules applied on the way.",
+      "lanes": [
+        {
+          "label": null,
+          "steps": [
+            {
+              "label": "Content-performance + localization data",
+              "kind": "data"
+            },
+            {
+              "label": "Analytical SQL + weekly snapshots",
+              "kind": "data"
+            },
+            {
+              "label": "Execution rights by data domain",
+              "kind": "rule"
+            },
+            {
+              "label": "Per-user query cache",
+              "kind": "app"
+            },
+            {
+              "label": "Content Journey UI",
+              "kind": "app"
+            }
+          ]
+        }
+      ],
+      "notes": [
+        "Cross-cutting: RBAC, freshness indicator, permission fallback, tests, PR checks, releases."
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "pair": "Phrase ingestion & Subtitle Studio",
+      "concepts": "external jobs, failure handling, re-runs"
+    },
+    {
+      "pair": "Operations Dashboard & Content Journey",
+      "concepts": "SQL results, caching, UI states"
+    },
+    {
+      "pair": "Newsletter & Shared Metrics",
+      "concepts": "as-of dates, reproducibility, metric definitions"
+    }
+  ]
+}
