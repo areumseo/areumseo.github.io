@@ -741,6 +741,13 @@
       opacity: 1;
       transform: none;
     }
+    @media (max-width: 640px) {
+      .nav-tag { display: none; }
+      .nav-inner { gap: 14px; }
+      .nav-menu { gap: 14px; font-size: 0.82rem; overflow-x: auto; scrollbar-width: none; }
+      .nav-menu { min-width: 0; }
+      .nav-menu li, .brand { flex: none; white-space: nowrap; }
+    }
   </style>
 </head>
 <body>
@@ -753,6 +760,7 @@
         <li><a href="#about">about</a></li>
         <li><a href="#projects">projects</a></li>
         <li><a href="#work">work</a></li>
+        <li><a href="competency-map/">competencies</a></li>
         <li><a href="#contact">contact</a></li>
       </ul>
       <a href="https://www.snowflake.com/ko/" target="_blank" class="nav-tag">@ Snowflake</a>

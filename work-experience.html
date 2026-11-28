@@ -426,6 +426,13 @@
       .achievement-cell:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
       .achievement-cell:last-child { border-bottom: none; }
     }
+    @media (max-width: 640px) {
+      .nav-tag { display: none; }
+      .nav-inner { gap: 14px; }
+      .nav-menu { gap: 14px; font-size: 0.82rem; overflow-x: auto; scrollbar-width: none; }
+      .nav-menu { min-width: 0; }
+      .nav-menu li, .brand { flex: none; white-space: nowrap; }
+    }
   </style>
 </head>
 <body>
@@ -439,6 +446,7 @@
         <li><a href="index.html#projects">projects</a></li>
         <li><a href="index.html#work">work</a></li>
         <li><a href="index.html#archive">archive</a></li>
+        <li><a href="competency-map/">competencies</a></li>
         <li><a href="index.html#contact">contact</a></li>
       </ul>
       <a href="https://www.snowflake.com/ko/" target="_blank" class="nav-tag">@ Snowflake</a>
