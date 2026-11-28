@@ -480,7 +480,7 @@
     },
     {
       "id": "quarterly-newsletter",
-      "title": "Quarterly Localization Newsletter",
+      "title": "Quarterly Newsletter",
       "kind": "project",
       "status": "Implemented & in use",
       "summary": "A reporting pipeline that automates the newsletter from data extraction through pre- and post-send checks.",
