@@ -9,7 +9,7 @@
     '—': 'No record for this area'
   };
   var KIND = { ai: 'AI step', rule: 'Rule-based step', human: 'Human review', data: 'Data', app: 'Application' };
-  var LEVEL = { direct: 'Applied directly', related: 'Related', unconfirmed: 'To be confirmed' };
+  var LEVEL = { direct: 'Used in this project', related: 'Related concept', design: 'Considered in design', unconfirmed: 'To be confirmed' };
 
   var D, P = {}, C = {}, S = {}, K = {}, A = {};
   var areaFilter = 'all';
@@ -37,10 +37,8 @@
   function renderAreas() {
     $('#area-grid').innerHTML = D.areas.map(function (a) {
       var caps = D.capabilities.filter(function (c) { return c.areaId === a.id; }).map(function (c) { return c.name; });
-      var projs = D.projects.filter(function (p) { var m = p.areaMarks[a.id]; return m && m.mark === '●'; });
       return '<article class="area"><h3>' + esc(a.name) + '</h3><p>' + esc(a.summary) + '</p>' + tags(caps) +
-        '<p class="area-projects">Evidence in ' + projs.length + ' project' + (projs.length === 1 ? '' : 's') + ' · ' +
-        '<button type="button" class="btn-link" data-area="' + esc(a.id) + '">See projects</button></p></article>';
+        '<p class="area-projects"><button type="button" class="btn-link" data-area="' + esc(a.id) + '">See examples</button></p></article>';
     }).join('');
   }
 
@@ -61,18 +59,18 @@
       '<h3>' + esc(p.title) + '</h3><p class="summary">' + esc(p.summary) + '</p>' +
       '<dl><div><dt>Problem</dt><dd>' + esc(p.problem) + '</dd></div><div><dt>My contribution</dt><dd>' + esc(p.contribution) + '</dd></div></dl>' +
       tags(caps) +
-      '<details class="more"><summary>Implementation details</summary><div class="more-body">' +
+      '<details class="more"><summary>' + esc(p.detailsLabel || 'Implementation details') + '</summary><div class="more-body">' +
       '<div><h4>Implementation</h4>' + list(p.implementation) + '</div>' +
       (stack.length ? '<div><h4>Stack</h4>' + tags(stack) + '</div>' : '') +
-      (arr(p.notes).length ? '<div><h4>How to read this</h4>' + p.notes.map(function (n) { return '<p class="note">' + esc(n) + '</p>'; }).join('') + '</div>' : '') +
+      arr(p.notes).map(function (n) { return '<div><h4>' + esc(n.label || 'Note') + '</h4><p class="note">' + esc(n.text || n) + '</p></div>'; }).join('') +
       '</div></details></article>';
   }
 
   function renderProjects() {
     var items = D.projects.filter(function (p) { return areaFilter === 'all' || projectAreas(p).indexOf(areaFilter) >= 0; });
     $('#project-list').innerHTML = items.map(projectCard).join('');
-    var label = areaFilter === 'all' ? 'all areas' : A[areaFilter].name;
-    $('#project-count').textContent = items.length + ' project' + (items.length === 1 ? '' : 's') + ' · ' + label;
+    var n = items.length + ' entr' + (items.length === 1 ? 'y' : 'ies');
+    $('#project-count').textContent = areaFilter === 'all' ? 'Showing all ' + n : 'Showing ' + n + ' · ' + A[areaFilter].name;
     $all('#project-filter .chip').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.filter === areaFilter)); });
   }
 
@@ -211,7 +209,6 @@
     D.stack.forEach(function (s) { S[s.id] = s; });
     D.concepts.forEach(function (k) { K[k.id] = k; });
     D.areas.forEach(function (a) { A[a.id] = a; });
-    $('#page-note').textContent = D.meta.note || '';
     if (D.meta.updatedAt) $('#footer-updated').textContent = 'Seoul · KR · Updated ' + D.meta.updatedAt;
     renderAreas(); renderProjectFilter(); renderProjects(); renderMatrix(); renderStack(); renderArch(); renderConcepts();
     bind(); spy();
@@ -219,7 +216,7 @@
   }
 
   $('#year').textContent = new Date().getFullYear();
-  fetch('data.json?v=20261128').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(init).catch(function () {
+  fetch('data.json?v=20261128b').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(init).catch(function () {
     $('#main').insertAdjacentHTML('afterbegin', '<p class="noscript">The project data could not be loaded. Please refresh the page.</p>');
   });
 })();
