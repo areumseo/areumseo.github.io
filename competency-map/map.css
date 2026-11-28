@@ -165,16 +165,17 @@ td.mark { text-align: center; font-size: 1.05rem; width: 15%; }
 .arch-body { padding: 0 20px 18px; }
 .lane { margin-top: 12px; }
 .lane-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink3); margin-bottom: 6px; }
-.flow { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 0; align-items: stretch; }
-.flow li { display: flex; align-items: center; }
-.flow li + li::before { content: '→'; color: var(--ink3); padding: 0 8px; font-family: 'DM Mono', monospace; }
-.node { border: 1px solid var(--rule); border-left: 4px solid var(--k-app); background: var(--bg); padding: 6px 10px; font-size: 0.84rem; border-radius: 3px; max-width: 240px; }
+/* Equal-size boxes: every lane in a diagram uses the same number of columns (--cols, set per diagram). */
+.flow { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr)); column-gap: 26px; align-items: stretch; }
+.flow li { position: relative; display: flex; }
+.flow li + li::before { content: '→'; position: absolute; left: -20px; top: 50%; transform: translateY(-50%); color: var(--ink3); font-family: 'DM Mono', monospace; }
+.node { border: 1px solid var(--rule); border-left: 4px solid var(--k-app); background: var(--bg); padding: 6px 10px; font-size: 0.84rem; border-radius: 3px; width: 100%; min-height: 4.4em; line-height: 1.35; }
+.legend .node { width: auto; min-height: 0; }
 .node small { display: block; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink3); }
 .k-ai { border-left-color: var(--k-ai); } .k-ai small { color: var(--k-ai); }
 .k-rule { border-left-color: var(--k-rule); } .k-rule small { color: var(--k-rule); }
 .k-human { border-left-color: var(--k-human); } .k-human small { color: var(--k-human); }
 .k-data { border-left-color: var(--k-data); } .k-data small { color: var(--k-data); }
-.legend .node { display: inline-block; }
 .arch-notes { margin-top: 12px; font-size: 0.86rem; color: var(--ink2); }
 .patterns { margin-top: 20px; }
 .patterns h3 { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink3); font-weight: 500; margin-bottom: 6px; }
@@ -216,10 +217,9 @@ footer { margin-top: 96px; border-top: 1px solid var(--rule); padding: 28px 0; }
   .stack-item summary { grid-template-columns: minmax(0, 1fr); }
   .stack-use { padding-left: 1.4em; }
   .concept-grid { grid-template-columns: minmax(0, 1fr); }
-  .flow { flex-direction: column; align-items: stretch; }
-  .flow li { flex-direction: column; align-items: stretch; }
-  .flow li + li::before { content: '↓'; padding: 2px 0; text-align: center; }
-  .node { max-width: none; }
+  .flow { grid-template-columns: minmax(0, 1fr); row-gap: 22px; }
+  .flow li + li::before { content: '↓'; left: 50%; top: -19px; transform: translateX(-50%); }
+  .node { min-height: 0; }
   .arch > summary { flex-wrap: wrap; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

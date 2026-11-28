@@ -136,7 +136,8 @@
   function renderArch() {
     $('#arch-legend').innerHTML = Object.keys(KIND).map(function (k) { return '<li><span class="node k-' + k + '">' + esc(KIND[k]) + '</span></li>'; }).join('');
     $('#arch-list').innerHTML = D.architectures.map(function (a, i) {
-      return '<details class="arch"' + (i === 0 ? ' open' : '') + '><summary><h3>' + esc(a.title) + '</h3><span>' + esc(a.description) + '</span></summary><div class="arch-body">' +
+      var cols = Math.max.apply(null, a.lanes.map(function (l) { return l.steps.length; }));
+      return '<details class="arch" style="--cols:' + cols + '"' + (i === 0 ? ' open' : '') + '><summary><h3>' + esc(a.title) + '</h3><span>' + esc(a.description) + '</span></summary><div class="arch-body">' +
         a.lanes.map(function (l) {
           return '<div class="lane">' + (l.label ? '<p class="lane-label">' + esc(l.label) + '</p>' : '') + '<ol class="flow">' +
             l.steps.map(function (s) { var k = KIND[s.kind] ? s.kind : 'app'; return '<li><span class="node k-' + k + '"><small>' + esc(KIND[k]) + '</small>' + esc(s.label) + '</span></li>'; }).join('') +
