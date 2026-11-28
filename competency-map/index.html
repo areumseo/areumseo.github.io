@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <title>Technical Competency Map — Areum Seo</title>
+  <meta name="description" content="프로젝트 경험과 기술 개념, 학습 과제를 연결한 자기 점검용 지도." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <nav class="topnav" aria-label="사이트">
+    <div class="nav-inner">
+      <a class="brand" href="../index.html">Areum Seo</a>
+      <span class="nav-tag">Living Draft</span>
+    </div>
+  </nav>
+
+  <div class="layout">
+    <aside class="sidenav" aria-label="페이지 목차">
+      <details class="toc" id="toc">
+        <summary>목차</summary>
+        <ol class="toc-list">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#projects">Project Inventory</a></li>
+          <li><a href="#matrix">Project × Competency</a></li>
+          <li><a href="#stack">Stack → Capability</a></li>
+          <li><a href="#architecture">Architecture Maps</a></li>
+          <li><a href="#concepts">Technical Concepts</a></li>
+          <li><a href="#evidence">Evidence Status</a></li>
+          <li><a href="#assessment">Self-assessment</a></li>
+          <li><a href="#gaps">Gap Analysis</a></li>
+          <li><a href="#roadmap">Learning Roadmap</a></li>
+        </ol>
+      </details>
+    </aside>
+
+    <main id="main" tabindex="-1">
+      <!-- Data source bar -->
+      <section class="databar" aria-label="데이터">
+        <p id="data-status" class="data-status" role="status">데이터를 불러오는 중…</p>
+        <div class="databar-actions">
+          <label class="btn btn-ghost" for="content-file">개인 데이터 파일 열기</label>
+          <input type="file" id="content-file" accept="application/json,.json" class="visually-hidden" />
+          <label class="check"><input type="checkbox" id="remember-content" /> 이 브라우저에 기억</label>
+          <button type="button" class="btn btn-ghost" id="clear-content" hidden>개인 데이터 닫기</button>
+        </div>
+        <p class="hint">파일은 이 브라우저 안에서만 읽고, 어디에도 전송하지 않습니다.</p>
+      </section>
+
+      <div id="view-home">
+        <header class="page-header" id="overview">
+          <p class="page-eyebrow">Technical Competency Map</p>
+          <h1 class="page-title">Technical Competency Map</h1>
+          <p class="page-subtitle">내가 만든 것에서, 내가 이해하고 있는 역량으로</p>
+          <div class="page-desc" id="intro"></div>
+          <p class="living">Living Draft · 프로젝트 경험과 학습 기록을 연결하며 업데이트 중</p>
+          <p class="disclaimer" id="disclaimer"></p>
+          <div class="area-summary" id="area-summary"></div>
+        </header>
+
+        <!-- Search & filters -->
+        <section class="finder" aria-label="검색과 필터">
+          <div class="search-row">
+            <label for="q" class="visually-hidden">검색</label>
+            <input type="search" id="q" placeholder="프로젝트, 기술, 역량, 개념, 한국어 설명 검색 (예: 재시도, 권한)" autocomplete="off" />
+            <button type="button" class="btn btn-ghost" id="filter-toggle" aria-expanded="false" aria-controls="filters">필터</button>
+            <button type="button" class="btn btn-ghost" id="filter-reset">필터 초기화</button>
+          </div>
+          <div id="filters" class="filters" hidden></div>
+          <p id="result-count" class="result-count" aria-live="polite"></p>
+        </section>
+
+        <section class="section" id="projects" aria-labelledby="h-projects">
+          <div class="section-header"><span class="section-num">01</span><h2 class="section-title" id="h-projects">Project Inventory</h2></div>
+          <p class="section-lead">무엇을 만들었나. 카드를 열면 기술, 개념, 근거, 학습 과제로 이어집니다.</p>
+          <div class="card-grid" id="project-list"></div>
+        </section>
+
+        <section class="section wide" id="matrix" aria-labelledby="h-matrix">
+          <div class="section-header"><span class="section-num">02</span><h2 class="section-title" id="h-matrix">Project × Competency</h2></div>
+          <p class="section-lead">표시는 숙련도가 아니라 프로젝트에서 확인되는 경험의 연결입니다.</p>
+          <ul class="legend" id="matrix-legend"></ul>
+          <div class="view-switch" role="group" aria-label="보기 방식">
+            <button type="button" class="btn btn-ghost" data-matrix-view="table" aria-pressed="true">표</button>
+            <button type="button" class="btn btn-ghost" data-matrix-view="cards" aria-pressed="false">프로젝트별 목록</button>
+          </div>
+          <div id="matrix-body"></div>
+        </section>
+
+        <section class="section" id="stack" aria-labelledby="h-stack">
+          <div class="section-header"><span class="section-num">03</span><h2 class="section-title" id="h-stack">Stack → Capability</h2></div>
+          <p class="section-lead">기술을 어디에 사용했고 어떤 역량과 연결되는가.</p>
+          <div id="stack-list" class="stack-list"></div>
+        </section>
+
+        <section class="section wide" id="architecture" aria-labelledby="h-arch">
+          <div class="section-header"><span class="section-num">04</span><h2 class="section-title" id="h-arch">Architecture Maps</h2></div>
+          <p class="section-lead">실제 연결이 확인된 구조와 개념적 비교를 구분합니다. 같은 기술을 썼다는 이유로 시스템 사이에 선을 긋지 않습니다.</p>
+          <ul class="legend" id="arch-legend"></ul>
+          <div id="arch-list"></div>
+        </section>
+
+        <section class="section" id="concepts" aria-labelledby="h-concepts">
+          <div class="section-header"><span class="section-num">05</span><h2 class="section-title" id="h-concepts">Technical Concepts Library</h2></div>
+          <p class="section-lead">정의 → 프로젝트 연결 → 관련 개념 → 자기 점검 → 다음 실습.</p>
+          <div class="card-grid" id="concept-list"></div>
+        </section>
+
+        <section class="section" id="evidence" aria-labelledby="h-evidence">
+          <div class="section-header"><span class="section-num">06</span><h2 class="section-title" id="h-evidence">Evidence Status</h2></div>
+          <div id="evidence-legend" class="evidence-legend"></div>
+          <div id="evidence-list"></div>
+        </section>
+
+        <section class="section" id="assessment" aria-labelledby="h-assess">
+          <div class="section-header"><span class="section-num">07</span><h2 class="section-title" id="h-assess">Self-assessment</h2></div>
+          <p class="section-lead">하나의 점수 대신 네 축으로 점검합니다. <strong>미평가는 낮은 역량이 아니라 아직 평가하지 않았다는 뜻입니다.</strong></p>
+          <div class="assess-bar">
+            <p id="save-status" class="save-status" role="status"></p>
+            <div class="assess-actions">
+              <button type="button" class="btn btn-ghost" id="assess-export">JSON 내보내기</button>
+              <label class="btn btn-ghost" for="assess-import">JSON 가져오기</label>
+              <input type="file" id="assess-import" accept="application/json,.json" class="visually-hidden" />
+              <button type="button" class="btn btn-ghost btn-danger" id="assess-reset">초기화</button>
+            </div>
+          </div>
+          <p class="hint">자기 평가는 이 브라우저에만 저장되고 다른 기기와 동기화하지 않습니다. 브라우저 저장소는 암호화되지 않으니 비밀번호나 키를 적지 마세요.</p>
+          <div id="reset-confirm" class="confirm" hidden role="alertdialog" aria-labelledby="reset-confirm-text">
+            <p id="reset-confirm-text">이 브라우저의 자기 평가 기록을 모두 지울까요? 먼저 JSON으로 내보내 두는 것을 권장합니다.</p>
+            <button type="button" class="btn btn-danger" id="reset-yes">모두 지우기</button>
+            <button type="button" class="btn btn-ghost" id="reset-no">취소</button>
+          </div>
+          <label for="assess-target" class="field-label">점검할 개념·역량</label>
+          <select id="assess-target"></select>
+          <div id="assess-form"></div>
+          <h3 class="sub-title">기록 목록</h3>
+          <div id="assess-summary"></div>
+        </section>
+
+        <section class="section" id="gaps" aria-labelledby="h-gaps">
+          <div class="section-header"><span class="section-num">08</span><h2 class="section-title" id="h-gaps">Gap Analysis</h2></div>
+          <p class="section-lead">‘경험 부족’으로 단정하지 않고 현재 기록과 확인 과제를 연결합니다.</p>
+          <div id="gap-list"></div>
+        </section>
+
+        <section class="section" id="roadmap" aria-labelledby="h-roadmap">
+          <div class="section-header"><span class="section-num">09</span><h2 class="section-title" id="h-roadmap">Learning Roadmap</h2></div>
+          <div id="roadmap-list"></div>
+        </section>
+
+        <footer class="page-footer">
+          <p id="footer-meta"></p>
+        </footer>
+      </div>
+
+      <div id="view-detail" hidden></div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
