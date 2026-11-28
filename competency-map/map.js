@@ -219,7 +219,7 @@
   }
 
   $('#year').textContent = new Date().getFullYear();
-  fetch('data.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(init).catch(function () {
+  fetch('data.json?v=20261128').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(init).catch(function () {
     $('#main').insertAdjacentHTML('afterbegin', '<p class="noscript">The project data could not be loaded. Please refresh the page.</p>');
   });
 })();
