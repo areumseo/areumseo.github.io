@@ -363,7 +363,7 @@
     },
     {
       "id": "content-journey",
-      "title": "Content Journey",
+      "title": "Content Lifecycle Analytics",
       "kind": "project",
       "status": "Implemented & launched",
       "summary": "An analytics app that follows content from recommendation through translation and launch to performance.",
@@ -532,7 +532,7 @@
     },
     {
       "id": "subtitle-studio",
-      "title": "Subtitle Studio",
+      "title": "Video Subtitling Pipeline",
       "kind": "project",
       "status": "Implemented & deployed",
       "summary": "Connects transcription, translation, rule-based subtitle formatting, human review and video burn-in.",
@@ -808,7 +808,7 @@
     {
       "id": "nextjs",
       "name": "Next.js / React",
-      "use": "Operations Dashboard, Content Journey, subtitle review app",
+      "use": "Operations Dashboard, Content Lifecycle Analytics, subtitle review app",
       "capability": "Web application engineering",
       "projectIds": [
         "operations-dashboard",
@@ -1801,7 +1801,7 @@
       "id": "cache",
       "name": "Caching and precomputation",
       "definition": "Reusing results, or computing them ahead of time.",
-      "inPractice": "A per-user query cache in Content Journey; Dynamic Tables precompute heavy calculations for the dashboard.",
+      "inPractice": "A per-user query cache in Content Lifecycle Analytics; Dynamic Tables precompute heavy calculations for the dashboard.",
       "projectLinks": [
         {
           "projectId": "content-journey",
@@ -1904,7 +1904,7 @@
       "id": "ci-release",
       "name": "CI and release management",
       "definition": "Automated checks on changes, and managing versioned releases.",
-      "inPractice": "Feature branches with automated PR checks, semantic versioning and a changelog for Content Journey.",
+      "inPractice": "Feature branches with automated PR checks, semantic versioning and a changelog for Content Lifecycle Analytics.",
       "projectLinks": [
         {
           "projectId": "content-journey",
@@ -2128,7 +2128,7 @@
               "kind": "app"
             },
             {
-              "label": "Content Journey UI",
+              "label": "Analytics app UI",
               "kind": "app"
             }
           ]
@@ -2141,11 +2141,11 @@
   ],
   "patterns": [
     {
-      "pair": "Phrase ingestion & Subtitle Studio",
+      "pair": "Phrase ingestion & Video Subtitling Pipeline",
       "concepts": "external jobs, failure handling, re-runs"
     },
     {
-      "pair": "Operations Dashboard & Content Journey",
+      "pair": "Operations Dashboard & Content Lifecycle Analytics",
       "concepts": "SQL results, caching, UI states"
     },
     {
